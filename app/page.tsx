@@ -1,5 +1,5 @@
-import { Dashboard } from "@/components/dashboard";
+import { UxDashboard } from "@/components/ux-dashboard";
 
 export default function Home() {
-  return <Dashboard />;
+  return <UxDashboard />;
 }

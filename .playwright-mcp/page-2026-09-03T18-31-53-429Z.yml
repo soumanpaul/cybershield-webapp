@@ -1,0 +1,100 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - img "Indian family protected by a digital security shield" [ref=e4]
+    - generic [ref=e6]:
+      - paragraph [ref=e14]: Digital safety for everyone
+      - heading "Cyber Suraksha" [level=1] [ref=e15]
+      - generic [ref=e16]: Be aware. Be safe. Be secure.
+    - generic [ref=e20]:
+      - generic [ref=e21]: Financial cyber fraud?
+      - strong [ref=e22]: Call 1930
+      - generic [ref=e23]: National helpline
+  - navigation "Cyber safety services" [ref=e24]:
+    - generic [ref=e25]:
+      - button "1 Cyber Scam Awareness Learn & protect" [pressed] [ref=e26] [cursor=pointer]:
+        - generic [ref=e27]: "1"
+        - generic [ref=e31]:
+          - strong [ref=e32]: Cyber Scam Awareness
+          - generic [ref=e33]: Learn & protect
+      - button "2 Experience Scam Scam simulator" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: "2"
+        - generic [ref=e38]:
+          - strong [ref=e39]: Experience Scam
+          - generic [ref=e40]: Scam simulator
+      - button "3 AI Scam Analyzer Check suspicious content" [ref=e41] [cursor=pointer]:
+        - generic [ref=e42]: "3"
+        - generic [ref=e46]:
+          - strong [ref=e47]: AI Scam Analyzer
+          - generic [ref=e48]: Check suspicious content
+      - button "4 I Have Been Scammed Get help & report" [ref=e49] [cursor=pointer]:
+        - generic [ref=e50]: "4"
+        - generic [ref=e53]:
+          - strong [ref=e54]: I Have Been Scammed
+          - generic [ref=e55]: Get help & report
+  - generic [ref=e57]:
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]: "01"
+        - paragraph [ref=e61]: Know the signs. Stop the scam.
+        - heading "Cyber Scam Awareness" [level=2] [ref=e62]
+        - paragraph [ref=e63]: Learn how common scams work, recognise warning signs, and build everyday habits that protect you and your family.
+        - button "Try a safe simulation" [ref=e64] [cursor=pointer]
+      - generic [ref=e75]:
+        - strong [ref=e76]: Pause. Check. Protect.
+        - generic [ref=e77]: A few seconds of verification can prevent financial loss.
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - text: Explore common threats
+        - heading "Top scam categories" [level=3] [ref=e80]
+      - generic [ref=e81]: Tap a category to learn its warning signs
+    - generic [ref=e82]:
+      - article [ref=e83]:
+        - generic [ref=e87]:
+          - strong [ref=e88]: Digital Arrest
+          - generic [ref=e89]: Fake police pressure
+      - article [ref=e92]:
+        - generic [ref=e98]:
+          - strong [ref=e99]: UPI Collect Request
+          - generic [ref=e100]: Unexpected payment
+      - article [ref=e103]:
+        - generic [ref=e111]:
+          - strong [ref=e112]: QR Code Scam
+          - generic [ref=e113]: Scan-to-receive trick
+      - article [ref=e116]:
+        - generic [ref=e120]:
+          - strong [ref=e121]: OTP Scam
+          - generic [ref=e122]: Code theft
+      - article [ref=e125]:
+        - generic [ref=e130]:
+          - strong [ref=e131]: Fake Investment
+          - generic [ref=e132]: Guaranteed returns
+      - article [ref=e135]:
+        - generic [ref=e141]:
+          - strong [ref=e142]: Fake Job
+          - generic [ref=e143]: Pay before joining
+      - article [ref=e146]:
+        - generic [ref=e151]:
+          - strong [ref=e152]: Courier Scam
+          - generic [ref=e153]: Parcel threat
+      - article [ref=e156]:
+        - generic [ref=e164]:
+          - strong [ref=e165]: Loan App Scam
+          - generic [ref=e166]: Predatory lending
+    - generic [ref=e169]:
+      - generic [ref=e173]:
+        - strong [ref=e174]: Remember
+        - paragraph [ref=e175]: Think before you click. Verify before you trust. Report suspicious activity to protect yourself and others.
+      - generic [ref=e176]: SAFE DIGITAL INDIA
+  - generic [ref=e177]:
+    - generic [ref=e178]:
+      - generic [ref=e182]: Think before you click
+      - generic [ref=e183]: Don’t open unknown links.
+    - generic [ref=e184]:
+      - generic [ref=e188]: Verify before you trust
+      - generic [ref=e189]: Use official channels.
+    - generic [ref=e190]:
+      - generic [ref=e195]: Protect your information
+      - generic [ref=e196]: Never share OTP, PIN or CVV.
+    - generic [ref=e197]:
+      - generic [ref=e200]: Financial cyber fraud?
+      - strong [ref=e201]: Call 1930

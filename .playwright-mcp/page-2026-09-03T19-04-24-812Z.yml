@@ -1,0 +1,270 @@
+- main [ref=e2]:
+  - img "Cyber Suraksha — safety guidance and financial cyber fraud helpline 1930" [ref=e4]
+  - navigation "Cyber safety services" [ref=e5]:
+    - button "Cyber Scam Awareness" [ref=e6] [cursor=pointer]
+    - button "Experience Scam (Scam Simulator)" [ref=e11] [cursor=pointer]:
+      - generic [ref=e14]:
+        - text: Experience Scam
+        - generic [ref=e15]: (Scam Simulator)
+    - button "AI Cyber Scam Analyzer" [ref=e16] [cursor=pointer]
+    - button "I Have Been Scammed (Report a Scam)" [ref=e21] [cursor=pointer]:
+      - generic [ref=e24]:
+        - text: I Have Been Scammed
+        - generic [ref=e25]: (Report a Scam)
+    - button "English" [ref=e26] [cursor=pointer]
+  - generic [ref=e29]:
+    - article [ref=e30]:
+      - generic [ref=e32]:
+        - heading "1.Cyber Scam Awareness" [level=2] [ref=e33]
+        - paragraph [ref=e34]: Learn about common cyber scams and stay protected.
+        - button "Explore Scams" [ref=e35] [cursor=pointer]
+      - generic [ref=e45]:
+        - heading [level=3] [ref=e46]:
+          - text: Top Scam Categories
+          - button "View All" [ref=e47]
+        - generic [ref=e48]:
+          - button "Digital Arrest" [ref=e49]
+          - button "UPI Collect Request" [ref=e53]
+          - button "QR Code Scam" [ref=e59]
+          - button "OTP Scam" [ref=e67]
+          - button "Fake Investment" [ref=e71]
+          - button "Fake Job" [ref=e76]
+          - button "Courier / Customs Scam" [ref=e82]
+          - button "Sextortion" [ref=e87]
+          - button "Social Media Impersonation" [ref=e92]
+          - button "Loan App Scam" [ref=e97]
+          - button "Matrimonial Scam" [ref=e105]
+          - button "SIM / KYC Scam" [ref=e110]
+        - generic [ref=e118]:
+          - generic [ref=e119]: Remember
+          - text: Think before you click. Verify before you trust.
+    - article [ref=e120]:
+      - generic [ref=e122]:
+        - heading "2.Experience Scam (Scam Simulator)" [level=2] [ref=e123]: 2.Experience Scam(Scam Simulator)
+        - paragraph [ref=e124]: Practice. Learn. Stay one step ahead.
+        - button "Start Simulation" [ref=e125] [cursor=pointer]
+      - generic [ref=e134]:
+        - heading [level=3] [ref=e135]:
+          - text: Simulation Categories
+          - button "View All" [ref=e136]
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - generic [ref=e139]: Digital Arrest
+            - emphasis [ref=e142]: High Risk
+            - generic [ref=e143]: Score 85/100
+          - generic [ref=e144]:
+            - generic [ref=e145]: UPI Collect Request
+            - emphasis [ref=e148]: High Risk
+            - generic [ref=e149]: Score 75/100
+          - generic [ref=e150]:
+            - generic [ref=e151]: QR Code Scam
+            - emphasis [ref=e154]: Medium Risk
+            - generic [ref=e155]: Score 80/100
+          - generic [ref=e156]:
+            - generic [ref=e157]: OTP Scam
+            - emphasis [ref=e160]: High Risk
+            - generic [ref=e161]: Score 90/100
+          - generic [ref=e162]:
+            - generic [ref=e163]: Fake Investment
+            - emphasis [ref=e166]: High Risk
+            - generic [ref=e167]: Score 70/100
+          - generic [ref=e168]:
+            - generic [ref=e169]: Fake Job
+            - emphasis [ref=e172]: Medium Risk
+            - generic [ref=e173]: Score 78/100
+          - generic [ref=e174]:
+            - generic [ref=e175]: Courier / Customs Scam
+            - emphasis [ref=e178]: Medium Risk
+            - generic [ref=e179]: Score 82/100
+          - generic [ref=e180]:
+            - generic [ref=e181]: Sextortion
+            - emphasis [ref=e184]: High Risk
+            - generic [ref=e185]: Score 83/100
+    - article [ref=e186]:
+      - generic [ref=e188]:
+        - heading "3.AI Cyber Scam Analyzer" [level=2] [ref=e189]
+        - paragraph [ref=e190]: Analyze suspicious messages, links, images and more with AI.
+        - button "Analyze Now" [ref=e191] [cursor=pointer]
+      - generic [ref=e201]:
+        - heading "What can you analyze?" [level=3] [ref=e202]
+        - generic [ref=e203]:
+          - button "SMS / Text Message" [ref=e204]
+          - button "WhatsApp Message" [ref=e208]
+          - button "Email" [ref=e212]
+          - button "URL / Link" [ref=e217]
+          - button "QR Code Screenshot" [ref=e222]
+          - button "Job Offer" [ref=e230]
+          - button "Investment Message" [ref=e236]
+          - button "Loan Message" [ref=e241]
+          - button "Fake Police Notice" [ref=e249]
+        - generic [ref=e253]: We do not store your data. Your privacy is our priority.
+    - article [ref=e258]:
+      - generic [ref=e260]:
+        - heading "4.I Have Been Scammed (Report a Scam)" [level=2] [ref=e261]: 4.I Have Been Scammed(Report a Scam)
+        - paragraph [ref=e262]: Get immediate help and report the incident to the right authorities.
+        - button "Get Help Now" [ref=e263] [cursor=pointer]
+      - generic [ref=e272]:
+        - heading "What should you do now?" [level=3] [ref=e273]
+        - generic [ref=e274]:
+          - button "Act Immediately (Emergency Steps)" [ref=e275]
+          - button "Report to National Cyber Crime Portal" [ref=e281]
+          - button "Report to Local Police (If required)" [ref=e287]
+          - button "Save Evidence Guide" [ref=e293]
+          - button "Bank / Payment Provider Contact" [ref=e300]
+        - link "Emergency? Call 1930 immediately" [ref=e307] [cursor=pointer]:
+          - /url: tel:1930
+  - generic [ref=e310]:
+    - article [ref=e311]:
+      - 'heading "Flow 1: Scam Simulator Journey" [level=2] [ref=e312]'
+      - generic [ref=e313]:
+        - generic [ref=e314]:
+          - generic [ref=e315]: Choose Scenario
+          - generic [ref=e319]:
+            - generic [ref=e320]:
+              - button "Digital Arrest" [ref=e321]
+              - button "UPI Collect Request" [ref=e327]
+              - button "QR Code Scam" [ref=e333]
+              - button "OTP Scam" [ref=e339]
+              - button "Fake Investment" [ref=e345]
+            - button "More Categories" [ref=e351]
+        - generic [ref=e356]:
+          - generic [ref=e357]: Scenario
+          - generic [ref=e361]:
+            - generic [ref=e362]:
+              - text: WhatsApp Message
+              - paragraph [ref=e363]: Dear Customer, your SBI account will be suspended today. Update KYC immediately.
+            - paragraph [ref=e364]: What would you do?
+            - generic [ref=e365]:
+              - button "Open the link" [ref=e366]
+              - button "Call the number in the message" [ref=e372]
+            - generic [ref=e378]: Verify through the bank’s official channel
+            - button "Next" [ref=e381]
+        - generic [ref=e384]:
+          - generic [ref=e385]: Result
+          - generic [ref=e389]:
+            - heading "Correct! 👍" [level=4] [ref=e393]
+            - paragraph [ref=e394]: Warning Signs
+            - list [ref=e395]:
+              - listitem [ref=e396]: Creates urgency
+              - listitem [ref=e397]: Suspicious domain
+              - listitem [ref=e398]: Requests account verification
+            - strong [ref=e399]: +20 Points
+            - button "Next Scenario" [ref=e400]
+        - generic [ref=e403]:
+          - generic [ref=e404]: Your Progress
+          - generic [ref=e408]:
+            - paragraph [ref=e409]: Cyber Safety Score
+            - generic [ref=e410]:
+              - generic [ref=e411]: "820"
+              - generic [ref=e412]: /1000
+            - heading "Cyber Defender 🛡️" [level=4] [ref=e413]
+            - generic [ref=e414]:
+              - text: Scenarios Completed
+              - generic [ref=e415]: 8 / 13
+            - button "Keep Going!" [ref=e418]
+    - article [ref=e419]:
+      - 'heading "Flow 2: AI Scam Analyzer Journey" [level=2] [ref=e420]'
+      - generic [ref=e421]:
+        - generic [ref=e422]:
+          - generic [ref=e423]: Upload / Paste
+          - generic [ref=e427]:
+            - paragraph [ref=e428]: Paste your message, URL or upload screenshot
+            - generic [ref=e429]:
+              - generic [ref=e430]: Paste Text
+              - generic [ref=e431]: Upload File
+              - generic [ref=e432]: URL
+            - generic [ref=e433]: You have a court case registered under your name. Contact the Cyber Crime Department immediately...
+            - generic [ref=e434]: 0/5000
+            - button "Analyze" [ref=e435]
+        - generic [ref=e438]:
+          - generic [ref=e439]: Analysis Result
+          - generic [ref=e443]:
+            - paragraph [ref=e444]: Risk Level
+            - generic [ref=e445]: HIGH
+            - heading "Likely Scam" [level=4] [ref=e446]
+            - strong [ref=e447]: Digital Arrest /Police Impersonation
+            - paragraph [ref=e448]: This message shows characteristics commonly associated with scams.
+            - paragraph [ref=e449]: Warning Signs Detected
+            - list [ref=e450]:
+              - listitem [ref=e451]: Urgency
+              - listitem [ref=e454]: Threat of arrest
+              - listitem [ref=e457]: Request for money
+              - listitem [ref=e460]: Unknown phone number
+        - generic [ref=e465]:
+          - generic [ref=e466]: Recommended Actions
+          - generic [ref=e470]:
+            - list [ref=e471]:
+              - listitem [ref=e472]:
+                - generic [ref=e473]: "1"
+                - text: Stop communicating immediately.
+              - listitem [ref=e474]:
+                - generic [ref=e475]: "2"
+                - text: Do not transfer money or share personal details.
+              - listitem [ref=e476]:
+                - generic [ref=e477]: "3"
+                - text: Save screenshots and preserve evidence.
+              - listitem [ref=e478]:
+                - generic [ref=e479]: "4"
+                - text: Report financial fraud immediately via 1930.
+              - listitem [ref=e480]:
+                - generic [ref=e481]: "5"
+                - text: File a complaint on the National Cyber Crime Reporting Portal.
+            - button "Start Over" [ref=e482]
+    - article [ref=e483]:
+      - 'heading "Flow 3: I Have Been Scammed Journey" [level=2] [ref=e484]'
+      - generic [ref=e485]:
+        - generic [ref=e486]:
+          - generic [ref=e487]: What Happened?
+          - generic [ref=e491]:
+            - paragraph [ref=e492]: How did you lose money?
+            - generic [ref=e493]:
+              - button "UPI" [ref=e494]
+              - button "Bank Transfer" [ref=e496]
+              - button "Debit / Credit Card" [ref=e498]
+              - button "E-Wallet" [ref=e500]
+              - button "Other" [ref=e502]
+            - button "Continue" [ref=e504]
+        - generic [ref=e507]:
+          - generic [ref=e508]: Act Now
+          - generic [ref=e512]:
+            - strong [ref=e513]: FINANCIAL FRAUD – ACT NOW
+            - generic [ref=e514]:
+              - generic [ref=e515]:
+                - text: Call cybercrime helpline
+                - generic [ref=e518]: "1930"
+              - generic [ref=e519]: Contact your bank immediately
+            - list [ref=e522]:
+              - listitem [ref=e523]:
+                - generic [ref=e524]: "1"
+                - text: Keep transaction ID, UPI ID / Account No., amount, date/time, screenshots and phone number used.
+            - button "Next" [ref=e525]
+        - generic [ref=e528]:
+          - generic [ref=e529]: Report & Next Steps
+          - generic [ref=e533]:
+            - generic [ref=e534]:
+              - link "Report on National Cyber Crime Portal" [ref=e535] [cursor=pointer]:
+                - /url: https://cybercrime.gov.in
+              - generic [ref=e543]: Inform Local Police
+              - generic [ref=e548]: Save Evidence Guide
+              - generic [ref=e554]: Helpline Numbers & Resources
+            - link "Open Incident Dashboard" [ref=e559] [cursor=pointer]:
+              - /url: /data-dashboard
+  - generic [ref=e562]:
+    - generic [ref=e566]:
+      - generic [ref=e567]: Think Before You Click
+      - generic [ref=e568]: Don’t click on unknown links or attachments.
+    - generic [ref=e573]:
+      - generic [ref=e574]: Verify Before You Trust
+      - generic [ref=e575]: Always verify through official channels.
+    - generic [ref=e580]:
+      - generic [ref=e581]: Protect Your Information
+      - generic [ref=e582]: Never share OTP, PIN, passwords or CVV.
+    - generic [ref=e587]:
+      - generic [ref=e588]: Report to Protect
+      - generic [ref=e589]: Report suspicious activity and help others stay safe.
+    - link "Financial Cyber Fraud? Call 1930 Helpline for financial fraud" [ref=e590] [cursor=pointer]:
+      - /url: tel:1930
+      - generic [ref=e593]:
+        - text: Financial Cyber Fraud?
+        - generic [ref=e594]: Call 1930
+        - generic [ref=e595]: Helpline for financial fraud

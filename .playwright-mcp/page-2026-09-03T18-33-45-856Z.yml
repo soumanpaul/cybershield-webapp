@@ -1,0 +1,97 @@
+- generic [ref=f1e1]:
+  - main [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - img "Indian family protected by a digital security shield" [ref=f1e4]
+      - generic [ref=f1e6]:
+        - paragraph [ref=f1e14]: Digital safety for everyone
+        - heading "Cyber Suraksha" [level=1] [ref=f1e15]
+        - generic [ref=f1e16]: Be aware. Be safe. Be secure.
+      - strong [ref=f1e22]: Call 1930
+    - navigation "Cyber safety services" [ref=f1e24]:
+      - button "Cyber Scam Awareness" [expanded] [active] [ref=f1e202]
+      - generic [ref=f1e25]:
+        - button "1 Cyber Scam Awareness Learn & protect" [pressed] [ref=f1e26] [cursor=pointer]:
+          - generic [ref=f1e27]: "1"
+          - generic [ref=f1e31]:
+            - strong [ref=f1e32]: Cyber Scam Awareness
+            - generic [ref=f1e33]: Learn & protect
+        - button "2 Experience Scam Scam simulator" [ref=f1e34] [cursor=pointer]:
+          - generic [ref=f1e35]: "2"
+          - generic [ref=f1e38]:
+            - strong [ref=f1e39]: Experience Scam
+            - generic [ref=f1e40]: Scam simulator
+        - button "3 AI Scam Analyzer Check suspicious content" [ref=f1e41] [cursor=pointer]:
+          - generic [ref=f1e42]: "3"
+          - generic [ref=f1e46]:
+            - strong [ref=f1e47]: AI Scam Analyzer
+            - generic [ref=f1e48]: Check suspicious content
+        - button "4 I Have Been Scammed Get help & report" [ref=f1e49] [cursor=pointer]:
+          - generic [ref=f1e50]: "4"
+          - generic [ref=f1e53]:
+            - strong [ref=f1e54]: I Have Been Scammed
+            - generic [ref=f1e55]: Get help & report
+    - generic [ref=f1e57]:
+      - generic [ref=f1e58]:
+        - generic [ref=f1e59]:
+          - generic [ref=f1e60]: "01"
+          - paragraph [ref=f1e61]: Know the signs. Stop the scam.
+          - heading "Cyber Scam Awareness" [level=2] [ref=f1e62]
+          - paragraph [ref=f1e63]: Learn how common scams work, recognise warning signs, and build everyday habits that protect you and your family.
+          - button "Try a safe simulation" [ref=f1e64] [cursor=pointer]
+        - generic [ref=f1e75]:
+          - strong [ref=f1e76]: Pause. Check. Protect.
+          - generic [ref=f1e77]: A few seconds of verification can prevent financial loss.
+      - generic [ref=f1e79]:
+        - text: Explore common threats
+        - heading "Top scam categories" [level=3] [ref=f1e80]
+      - generic [ref=f1e82]:
+        - article [ref=f1e83]:
+          - generic [ref=f1e87]:
+            - strong [ref=f1e88]: Digital Arrest
+            - generic [ref=f1e89]: Fake police pressure
+        - article [ref=f1e92]:
+          - generic [ref=f1e98]:
+            - strong [ref=f1e99]: UPI Collect Request
+            - generic [ref=f1e100]: Unexpected payment
+        - article [ref=f1e103]:
+          - generic [ref=f1e111]:
+            - strong [ref=f1e112]: QR Code Scam
+            - generic [ref=f1e113]: Scan-to-receive trick
+        - article [ref=f1e116]:
+          - generic [ref=f1e120]:
+            - strong [ref=f1e121]: OTP Scam
+            - generic [ref=f1e122]: Code theft
+        - article [ref=f1e125]:
+          - generic [ref=f1e130]:
+            - strong [ref=f1e131]: Fake Investment
+            - generic [ref=f1e132]: Guaranteed returns
+        - article [ref=f1e135]:
+          - generic [ref=f1e141]:
+            - strong [ref=f1e142]: Fake Job
+            - generic [ref=f1e143]: Pay before joining
+        - article [ref=f1e146]:
+          - generic [ref=f1e151]:
+            - strong [ref=f1e152]: Courier Scam
+            - generic [ref=f1e153]: Parcel threat
+        - article [ref=f1e156]:
+          - generic [ref=f1e164]:
+            - strong [ref=f1e165]: Loan App Scam
+            - generic [ref=f1e166]: Predatory lending
+      - generic [ref=f1e173]:
+        - strong [ref=f1e174]: Remember
+        - paragraph [ref=f1e175]: Think before you click. Verify before you trust. Report suspicious activity to protect yourself and others.
+    - generic [ref=f1e177]:
+      - generic [ref=f1e178]:
+        - generic [ref=f1e182]: Think before you click
+        - generic [ref=f1e183]: Don’t open unknown links.
+      - generic [ref=f1e184]:
+        - generic [ref=f1e188]: Verify before you trust
+        - generic [ref=f1e189]: Use official channels.
+      - generic [ref=f1e190]:
+        - generic [ref=f1e195]: Protect your information
+        - generic [ref=f1e196]: Never share OTP, PIN or CVV.
+      - generic [ref=f1e197]:
+        - generic [ref=f1e200]: Financial cyber fraud?
+        - strong [ref=f1e201]: Call 1930
+  - button "Open Next.js Dev Tools" [ref=f1e210] [cursor=pointer]
+  - alert [ref=f1e214]

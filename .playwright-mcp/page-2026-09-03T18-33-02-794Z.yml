@@ -1,0 +1,85 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - img "Indian family protected by a digital security shield" [ref=e4]
+      - generic [ref=e6]:
+        - paragraph [ref=e14]: Digital safety for everyone
+        - heading "Cyber Suraksha" [level=1] [ref=e15]
+        - generic [ref=e16]: Be aware. Be safe. Be secure.
+      - generic [ref=e20]:
+        - generic [ref=e21]: Financial cyber fraud?
+        - strong [ref=e22]: Call 1930
+        - generic [ref=e23]: National helpline
+    - navigation "Cyber safety services" [ref=e24]:
+      - generic [ref=e25]:
+        - button "1 Cyber Scam Awareness Learn & protect" [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: "1"
+          - generic [ref=e31]:
+            - strong [ref=e32]: Cyber Scam Awareness
+            - generic [ref=e33]: Learn & protect
+        - button "2 Experience Scam Scam simulator" [ref=e34] [cursor=pointer]:
+          - generic [ref=e35]: "2"
+          - generic [ref=e38]:
+            - strong [ref=e39]: Experience Scam
+            - generic [ref=e40]: Scam simulator
+        - button "3 AI Scam Analyzer Check suspicious content" [ref=e41] [cursor=pointer]:
+          - generic [ref=e42]: "3"
+          - generic [ref=e46]:
+            - strong [ref=e47]: AI Scam Analyzer
+            - generic [ref=e48]: Check suspicious content
+        - button "4 I Have Been Scammed Get help & report" [pressed] [ref=e49] [cursor=pointer]:
+          - generic [ref=e50]: "4"
+          - generic [ref=e53]:
+            - strong [ref=e54]: I Have Been Scammed
+            - generic [ref=e55]: Get help & report
+    - generic [ref=e422]:
+      - generic [ref=e423]:
+        - generic [ref=e424]: "04"
+        - generic [ref=e428]:
+          - heading "I Have Been Scammed" [level=2] [ref=e429]
+          - paragraph [ref=e430]: Act quickly, preserve evidence, and report the incident to the right authorities.
+      - generic [ref=e431]:
+        - generic [ref=e437]:
+          - strong [ref=e438]: Money just left your account?
+          - generic [ref=e439]: Call 1930 immediately. Fast reporting can improve the chance of blocking a transaction.
+        - link "Call 1930" [ref=e440] [cursor=pointer]:
+          - /url: tel:1930
+      - generic [ref=e443]:
+        - generic [ref=e444]: What happened?
+        - generic [ref=e448]:
+          - generic [ref=e449]: "2"
+          - generic [ref=e450]: Act now
+        - generic [ref=e452]:
+          - generic [ref=e453]: "3"
+          - generic [ref=e454]: Report & next steps
+      - generic [ref=e455]:
+        - generic [ref=e494]:
+          - strong [ref=e498]: Act now
+          - generic [ref=e502]:
+            - paragraph [ref=e503]: Financial fraud — act now
+            - generic [ref=e504]:
+              - generic [ref=e505]: Call cybercrime helpline 1930
+              - generic [ref=e509]: Contact your bank immediately
+              - generic [ref=e513]: Keep transaction ID, screenshots and phone numbers
+            - button "Next" [ref=e518] [cursor=pointer]
+        - generic [ref=e479]:
+          - heading "You are not alone" [level=3] [ref=e485]
+          - paragraph [ref=e486]: Take one step at a time. Stop contact, call your bank, save evidence, then report through official channels.
+          - generic [ref=e490]:
+            - generic [ref=e491]: Your safety comes first
+            - text: Never confront a suspected scammer or travel to meet them.
+    - generic [ref=e177]:
+      - generic [ref=e178]:
+        - generic [ref=e182]: Think before you click
+        - generic [ref=e183]: Don’t open unknown links.
+      - generic [ref=e184]:
+        - generic [ref=e188]: Verify before you trust
+        - generic [ref=e189]: Use official channels.
+      - generic [ref=e190]:
+        - generic [ref=e195]: Protect your information
+        - generic [ref=e196]: Never share OTP, PIN or CVV.
+      - generic [ref=e197]:
+        - generic [ref=e200]: Financial cyber fraud?
+        - strong [ref=e201]: Call 1930
+  - button "Open Next.js Dev Tools" [ref=e207] [cursor=pointer]
+  - alert [ref=e211]

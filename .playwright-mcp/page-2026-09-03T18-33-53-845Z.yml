@@ -1,0 +1,65 @@
+- generic [active] [ref=f1e1]:
+  - main [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - img "Indian family protected by a digital security shield" [ref=f1e4]
+      - generic [ref=f1e6]:
+        - paragraph [ref=f1e14]: Digital safety for everyone
+        - heading "Cyber Suraksha" [level=1] [ref=f1e15]
+        - generic [ref=f1e16]: Be aware. Be safe. Be secure.
+      - strong [ref=f1e22]: Call 1930
+    - navigation "Cyber safety services" [ref=f1e24]:
+      - button "I Have Been Scammed" [ref=f1e218]
+    - generic [ref=f1e220]:
+      - generic [ref=f1e221]:
+        - generic [ref=f1e222]: "04"
+        - generic [ref=f1e226]:
+          - heading "I Have Been Scammed" [level=2] [ref=f1e227]
+          - paragraph [ref=f1e228]: Act quickly, preserve evidence, and report the incident to the right authorities.
+      - generic [ref=f1e229]:
+        - generic [ref=f1e235]:
+          - strong [ref=f1e236]: Money just left your account?
+          - generic [ref=f1e237]: Call 1930 immediately. Fast reporting can improve the chance of blocking a transaction.
+        - link "Call 1930" [ref=f1e238] [cursor=pointer]:
+          - /url: tel:1930
+      - generic [ref=f1e241]:
+        - generic [ref=f1e242]:
+          - generic [ref=f1e243]: "1"
+          - generic [ref=f1e244]: What happened?
+        - generic [ref=f1e246]:
+          - generic [ref=f1e247]: "2"
+          - generic [ref=f1e248]: Act now
+        - generic [ref=f1e250]:
+          - generic [ref=f1e251]: "3"
+          - generic [ref=f1e252]: Report & next steps
+      - generic [ref=f1e253]:
+        - generic [ref=f1e254]:
+          - strong [ref=f1e258]: What happened?
+          - generic [ref=f1e262]:
+            - heading "How did you lose money?" [level=4] [ref=f1e263]
+            - button "UPI" [ref=f1e264] [cursor=pointer]
+            - button "Bank transfer" [ref=f1e266] [cursor=pointer]
+            - button "Debit / credit card" [ref=f1e268] [cursor=pointer]
+            - button "E-wallet" [ref=f1e270] [cursor=pointer]
+            - button "Other" [ref=f1e272] [cursor=pointer]
+            - button "Continue" [ref=f1e274] [cursor=pointer]
+        - generic [ref=f1e277]:
+          - heading "You are not alone" [level=3] [ref=f1e283]
+          - paragraph [ref=f1e284]: Take one step at a time. Stop contact, call your bank, save evidence, then report through official channels.
+          - generic [ref=f1e288]:
+            - generic [ref=f1e289]: Your safety comes first
+            - text: Never confront a suspected scammer or travel to meet them.
+    - generic [ref=f1e177]:
+      - generic [ref=f1e178]:
+        - generic [ref=f1e182]: Think before you click
+        - generic [ref=f1e183]: Don’t open unknown links.
+      - generic [ref=f1e184]:
+        - generic [ref=f1e188]: Verify before you trust
+        - generic [ref=f1e189]: Use official channels.
+      - generic [ref=f1e190]:
+        - generic [ref=f1e195]: Protect your information
+        - generic [ref=f1e196]: Never share OTP, PIN or CVV.
+      - generic [ref=f1e197]:
+        - generic [ref=f1e200]: Financial cyber fraud?
+        - strong [ref=f1e201]: Call 1930
+  - button "Open Next.js Dev Tools" [ref=f1e210] [cursor=pointer]
+  - alert [ref=f1e214]

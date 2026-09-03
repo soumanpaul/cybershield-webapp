@@ -1,0 +1,138 @@
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e207] [cursor=pointer]
+  - alert [ref=e211]: Incident Data Dashboard | Cyber Suraksha
+  - main [ref=e556]:
+    - complementary [ref=e557]:
+      - generic "CyberShield" [ref=e558]:
+        - generic [ref=e559]: CS
+        - generic [ref=e561]:
+          - strong [ref=e562]: CYBERSHIELD
+          - generic [ref=e563]: INTELLIGENCE DIVISION
+      - generic [ref=e564]: COMMAND CENTER
+      - navigation [ref=e565]:
+        - link "Overview" [ref=e566] [cursor=pointer]:
+          - /url: "#overview"
+        - link "Captured identities 0" [ref=e573] [cursor=pointer]:
+          - /url: "#targets"
+          - text: Captured identities
+          - generic [ref=e579]: "0"
+        - link "Network map" [ref=e580] [cursor=pointer]:
+          - /url: "#network"
+        - link "Signal intercepts" [ref=e586] [cursor=pointer]:
+          - /url: "#signals"
+      - generic [ref=e593]: SYSTEMS
+      - navigation [ref=e594]:
+        - link "Data vault" [ref=e595] [cursor=pointer]:
+          - /url: "#database"
+        - link [ref=e600] [cursor=pointer]:
+          - /url: "#security"
+          - text: Threat matrix
+          - emphasis [ref=e603]: "0"
+        - link "Terminal" [ref=e604] [cursor=pointer]:
+          - /url: "#terminal"
+      - generic [ref=e608]:
+        - generic [ref=e611]:
+          - generic [ref=e612]: NODE STATUS
+          - strong [ref=e613]: OPERATIONAL
+        - generic [ref=e615]: 99.9%
+    - generic [ref=e616]:
+      - generic [ref=e617]:
+        - generic [ref=e618]:
+          - generic [ref=e620]: SECURE UPLINK ESTABLISHED
+          - generic [ref=e621]: //
+          - generic [ref=e622]: NODE_7A
+          - generic [ref=e623]: //
+          - generic [ref=e624]: 00:03:19 IST
+        - generic [ref=e625]:
+          - group "Dashboard display mode" [ref=e626]:
+            - button "Hacker" [pressed] [ref=e627] [cursor=pointer]
+            - button "Simple" [ref=e631] [cursor=pointer]
+          - button "Notifications" [ref=e634] [cursor=pointer]
+          - generic [ref=e639]:
+            - generic [ref=e640]: OP
+            - generic [ref=e641]:
+              - generic [ref=e642]: OPERATOR
+              - strong [ref=e643]: GHOST_01
+      - generic [ref=e646]:
+        - generic [ref=e647]:
+          - generic [ref=e648]:
+            - generic [ref=e649]: 01 / SURVEILLANCE OVERVIEW
+            - heading "Intelligence Console" [level=1] [ref=e650]
+            - paragraph [ref=e651]: Real-time identity acquisition and network telemetry.
+          - generic [ref=e652]:
+            - generic [ref=e653]: CONNECTING
+            - button "REFRESH DATA" [disabled] [ref=e658] [cursor=pointer]
+            - link "SCAM SIMULATOR" [ref=e665] [cursor=pointer]:
+              - /url: /scam-simulator
+        - generic [ref=e674]:
+          - article [ref=e675]:
+            - generic [ref=e676]: + 12.8%
+            - generic [ref=e688]: "00"
+            - generic [ref=e689]: CAPTURED IDENTITIES
+          - article [ref=e703]:
+            - generic [ref=e704]: + 8.4%
+            - generic [ref=e710]: "00"
+            - generic [ref=e711]: ACTIVE TARGETS
+          - article [ref=e725]:
+            - generic [ref=e726]: + 3 ALERTS
+            - generic [ref=e731]: "00"
+            - generic [ref=e732]: HIGH-RISK SIGNALS
+          - article [ref=e746]:
+            - generic [ref=e747]: + GLOBAL
+            - generic [ref=e755]: "00"
+            - generic [ref=e756]: REGIONS MAPPED
+        - generic [ref=e770]:
+          - generic [ref=e771]:
+            - generic [ref=e778]:
+              - heading "Captured identities" [level=2] [ref=e779]
+              - paragraph [ref=e780]: Incoming mobile intelligence records
+            - generic [ref=e781]:
+              - textbox [ref=e786]:
+                - /placeholder: Search records...
+              - button "Export current records" [ref=e787] [cursor=pointer]
+          - generic [ref=e791]:
+            - table [ref=e792]:
+              - rowgroup [ref=e793]:
+                - row [ref=e794]:
+                  - columnheader "IDENTITY" [ref=e795]
+                  - columnheader "CONTACT VECTOR" [ref=e796]
+                  - columnheader "ORIGIN / IP" [ref=e797]
+                  - columnheader "DEVICE" [ref=e798]
+                  - columnheader "THREAT" [ref=e799]
+                  - columnheader "STATUS" [ref=e800]
+                  - columnheader "LAST SEEN" [ref=e801]
+              - rowgroup
+            - generic [ref=e802]: ESTABLISHING DATA UPLINK...
+          - generic [ref=e805]:
+            - generic [ref=e806]: STREAM RECONNECTING
+            - generic [ref=e808]: SHOWING 0 / 0 RECORDS
+            - generic [ref=e809]: LAST SYNC --:--:--
+        - generic [ref=e810]:
+          - generic [ref=e811]:
+            - generic [ref=e812]:
+              - generic [ref=e813]: LIVE ACTIVITY LOG
+              - generic [ref=e817]: ● ● ●
+            - generic [ref=e818]:
+              - paragraph [ref=e819]:
+                - time [ref=e820]: SYS
+                - text: cybershield@node-7a:~$ monitor --stream identities
+              - paragraph [ref=e821]:
+                - time [ref=e822]: OK
+                - text: Encrypted channel initialized on port 443
+              - paragraph [ref=e823]:
+                - time [ref=e824]: DB
+                - text: PostgreSQL notification listener attached
+              - paragraph [ref=e825]:
+                - time [ref=e826]: SSE
+                - generic [ref=e827]: "Dashboard transport: connecting"
+              - paragraph [ref=e828]:
+                - time [ref=e829]: ">"
+                - text: Awaiting incoming payload
+          - generic [ref=e831]:
+            - generic [ref=e832]:
+              - generic [ref=e833]: NETWORK PULSE
+              - generic [ref=e837]: LIVE
+            - generic [ref=e843]:
+              - generic [ref=e844]: INGRESS 2.4 MB/s
+              - generic [ref=e845]: LATENCY 24 ms
+              - generic [ref=e846]: PACKETS 18.2K
