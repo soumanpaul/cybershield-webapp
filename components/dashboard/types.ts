@@ -1,1 +1,1 @@
-export type TabId = "awareness" | "simulator" | "analyzer" | "report";
+export type TabId = "home" | "awareness" | "simulator" | "analyzer" | "report";
