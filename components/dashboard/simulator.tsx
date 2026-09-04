@@ -21,8 +21,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { FakeCertificationSimulationPanel } from "./fake-certification-simulation-panel";
 import { KycSimulationPanel } from "./kyc-simulation-panel";
 import { useDashboardLanguage } from "./language-provider";
+import { OtpSimulationPanel } from "./otp-simulation-panel";
 
 type RiskLevel = "High Risk" | "Medium Risk";
 
@@ -35,13 +37,13 @@ interface SimulationCategory {
 }
 
 const SIMULATION_CATEGORIES: SimulationCategory[] = [
-  { name: "Digital Arrest", risk: "High Risk", score: 85, icon: ShieldAlert, iconStyle: "bg-violet-50 text-violet-600" },
-  { name: "UPI Collect Request", risk: "High Risk", score: 75, icon: WalletCards, iconStyle: "bg-blue-50 text-blue-600" },
-  { name: "QR Code Scam", risk: "Medium Risk", score: 80, icon: QrCode, iconStyle: "bg-emerald-50 text-emerald-600" },
   { name: "OTP Scam", risk: "High Risk", score: 90, icon: KeyRound, iconStyle: "bg-pink-50 text-pink-600" },
   { name: "Fake Online Certification Scam", risk: "Medium Risk", score: 76, icon: BadgeCheck, iconStyle: "bg-amber-50 text-amber-600" },
   { name: "KYC Scam", risk: "High Risk", score: 88, icon: IdCard, iconStyle: "bg-blue-50 text-blue-600" },
   { name: "Sextortion", risk: "High Risk", score: 83, icon: HeartCrack, iconStyle: "bg-pink-50 text-pink-600" },
+  { name: "Digital Arrest", risk: "High Risk", score: 85, icon: ShieldAlert, iconStyle: "bg-violet-50 text-violet-600" },
+  { name: "UPI Collect Request", risk: "High Risk", score: 75, icon: WalletCards, iconStyle: "bg-blue-50 text-blue-600" },
+  { name: "QR Code Scam", risk: "Medium Risk", score: 80, icon: QrCode, iconStyle: "bg-emerald-50 text-emerald-600" },
   { name: "Fake Investment", risk: "High Risk", score: 70, icon: ChartNoAxesCombined, iconStyle: "bg-rose-50 text-rose-600" },
   { name: "Fake Job", risk: "Medium Risk", score: 78, icon: BriefcaseBusiness, iconStyle: "bg-violet-50 text-violet-600" },
   { name: "Courier / Customs Scam", risk: "Medium Risk", score: 82, icon: PackageSearch, iconStyle: "bg-indigo-50 text-indigo-600" },
@@ -49,7 +51,9 @@ const SIMULATION_CATEGORIES: SimulationCategory[] = [
 
 export function Simulator() {
   const { t } = useDashboardLanguage();
+  const [fakeCertificationSimulationOpen, setFakeCertificationSimulationOpen] = useState(false);
   const [kycSimulationOpen, setKycSimulationOpen] = useState(false);
+  const [otpSimulationOpen, setOtpSimulationOpen] = useState(false);
   const showSimulationCategories = () => {
     document.getElementById("simulation-categories")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -60,11 +64,13 @@ export function Simulator() {
         <CardContent className="p-0">
           <section className="grid min-h-56 overflow-hidden border-b border-slate-200 bg-gradient-to-br from-white via-white to-violet-50 px-6 py-7 sm:grid-cols-[1fr_.78fr] sm:px-9">
             <div className="relative z-10 flex flex-col items-start justify-center">
-              <h1 className="flex items-start gap-2 text-xs font-extrabold uppercase leading-tight text-violet-700 sm:text-base">
-                <span className="text-violet-600">2.</span>
-                <span>{t("Experience Scam")}<br /><span className="text-[10px] sm:text-xs">{t("(Scam Simulator)")}</span></span>
-              </h1>
-              <p className="mt-4 max-w-md text-[11px] font-medium leading-6 text-slate-600">{t("Practice. Learn. Stay one step ahead.")}</p>
+              <div className="uppercase tracking-tight">
+                <h1 className="flex items-center gap-2 text-xs font-black leading-none text-blue-600 sm:text-base">
+                  <strong className="font-black">2.</strong>
+                  {t("Scam simulator")}
+                </h1>
+              </div>
+              <p className="mt-4 max-w-md text-sm font-semibold leading-6 text-slate-600 sm:text-base">{t("Practice. Learn. Stay one step ahead.")}</p>
               <Button onClick={showSimulationCategories} className="mt-5 h-10 bg-gradient-to-r from-violet-600 to-violet-700 px-4 text-[10px] font-bold shadow-md shadow-violet-600/20 hover:from-violet-700 hover:to-violet-800">
                 {t("Start Simulation")} <ChevronRight className="ml-3 size-3" />
               </Button>
@@ -103,13 +109,23 @@ export function Simulator() {
                   return <button key={name} type="button" onClick={() => setKycSimulationOpen(true)} className={categoryClassName} aria-haspopup="dialog">{categoryContent}</button>;
                 }
 
+                if (name === "Fake Online Certification Scam") {
+                  return <button key={name} type="button" onClick={() => setFakeCertificationSimulationOpen(true)} className={categoryClassName} aria-haspopup="dialog">{categoryContent}</button>;
+                }
+
+                if (name === "OTP Scam") {
+                  return <button key={name} type="button" onClick={() => setOtpSimulationOpen(true)} className={categoryClassName} aria-haspopup="dialog">{categoryContent}</button>;
+                }
+
                 return <Link key={name} href="/scam-simulator" className={categoryClassName}>{categoryContent}</Link>;
               })}
             </div>
           </section>
         </CardContent>
       </Card>
+      <FakeCertificationSimulationPanel open={fakeCertificationSimulationOpen} onOpenChange={setFakeCertificationSimulationOpen} />
       <KycSimulationPanel open={kycSimulationOpen} onOpenChange={setKycSimulationOpen} />
+      <OtpSimulationPanel open={otpSimulationOpen} onOpenChange={setOtpSimulationOpen} />
     </div>
   );
 }

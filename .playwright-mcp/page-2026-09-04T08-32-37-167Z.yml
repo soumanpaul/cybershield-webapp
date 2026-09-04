@@ -1,0 +1,65 @@
+- generic [active] [ref=f41e1]:
+  - button "Open Next.js Dev Tools" [ref=f41e158] [cursor=pointer]
+  - alert [ref=f41e162]
+  - main [ref=f41e163]:
+    - complementary [ref=f41e164]:
+      - generic "CyberShield" [ref=f41e165]:
+        - generic [ref=f41e166]: CS
+        - generic [ref=f41e168]:
+          - strong [ref=f41e169]: CYBERSHIELD
+          - generic [ref=f41e170]: INTELLIGENCE DIVISION
+      - generic [ref=f41e171]: COMMAND CENTER
+      - navigation [ref=f41e172]:
+        - link "Overview" [ref=f41e173] [cursor=pointer]:
+          - /url: "#overview"
+        - link "Captured identities 0" [ref=f41e180] [cursor=pointer]:
+          - /url: "#targets"
+          - text: Captured identities
+          - generic [ref=f41e186]: "0"
+        - link "Network map" [ref=f41e187] [cursor=pointer]:
+          - /url: "#network"
+        - link "Signal intercepts" [ref=f41e193] [cursor=pointer]:
+          - /url: "#signals"
+      - generic [ref=f41e200]: SYSTEMS
+      - navigation [ref=f41e201]:
+        - link "Data vault" [ref=f41e202] [cursor=pointer]:
+          - /url: "#database"
+        - link [ref=f41e207] [cursor=pointer]:
+          - /url: "#security"
+          - text: Threat matrix
+          - emphasis [ref=f41e210]: "0"
+        - link "Terminal" [ref=f41e211] [cursor=pointer]:
+          - /url: "#terminal"
+      - generic [ref=f41e215]:
+        - generic [ref=f41e218]:
+          - generic [ref=f41e219]: NODE STATUS
+          - strong [ref=f41e220]: OPERATIONAL
+        - generic [ref=f41e222]: 99.9%
+    - generic [ref=f41e223]:
+      - generic [ref=f41e224]:
+        - generic [ref=f41e225]:
+          - generic [ref=f41e227]: SECURE UPLINK ESTABLISHED
+          - generic [ref=f41e228]: //
+          - generic [ref=f41e229]: NODE_7A
+          - generic [ref=f41e230]: //
+          - generic [ref=f41e231]: 14:02:37 IST
+        - generic [ref=f41e232]:
+          - group "Dashboard display mode" [ref=f41e233]:
+            - button "Hacker" [pressed] [ref=f41e234] [cursor=pointer]
+            - button "Simple" [ref=f41e238] [cursor=pointer]
+          - button "Notifications" [ref=f41e241] [cursor=pointer]
+          - generic [ref=f41e246]:
+            - generic [ref=f41e247]: OP
+            - generic [ref=f41e248]:
+              - generic [ref=f41e249]: OPERATOR
+              - strong [ref=f41e250]: GHOST_01
+      - generic [ref=f41e254]:
+        - generic [ref=f41e255]:
+          - generic [ref=f41e256]: 01 / SURVEILLANCE OVERVIEW
+          - heading "Intelligence Console" [level=1] [ref=f41e257]
+          - paragraph [ref=f41e258]: Real-time identity acquisition and network telemetry.
+        - generic [ref=f41e259]:
+          - link "CYBER SCAM AWARENESS" [ref=f41e260] [cursor=pointer]:
+            - /url: /
+          - link "CAPTURED DATA" [ref=f41e268] [cursor=pointer]:
+            - /url: /captured-data

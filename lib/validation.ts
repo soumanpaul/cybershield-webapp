@@ -23,9 +23,20 @@ export function parseUserInput(value: unknown): UserInput {
     ipAddress: text(body.ipAddress, "ipAddress"),
     device: text(body.device, "device"),
     location: text(body.location, "location"),
+    course: text(body.course, "course"),
+    accountType: text(body.accountType, "accountType"),
+    paymentMode: text(body.paymentMode, "paymentMode"),
+    amount: money(body.amount, "amount"),
     status: text(body.status, "status"),
     threatLevel: threatLevel as ThreatLevel | undefined,
   };
+}
+
+function money(value: unknown, field: string): number | undefined {
+  if (value === undefined || value === null || value === "") return undefined;
+  if (typeof value !== "number" || !Number.isFinite(value)) throw new Error(`${field} must be a valid number`);
+  if (value < 0 || value > 100_000_000) throw new Error(`${field} must be between 0 and 100000000`);
+  return Math.round(value * 100) / 100;
 }
 
 function text(value: unknown, field: string, required = false): string {

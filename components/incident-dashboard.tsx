@@ -2,7 +2,7 @@
 
 import {
   Activity, Bell, ChevronDown, CircleDot, Database, Download, Fingerprint,
-  ExternalLink, Gauge, Globe2, GraduationCap, LayoutDashboard, Menu, Radio,
+  Gauge, Globe2, GraduationCap, Home, LayoutDashboard, Menu, Radio,
   RefreshCw, Search, Server, ShieldAlert, TableProperties, TerminalSquare,
   Users, Wifi, X,
 } from "lucide-react";
@@ -13,7 +13,7 @@ import { Logo } from "@/components/logo";
 type LiveState = "connecting" | "live" | "offline";
 type DashboardMode = "hacker" | "simple";
 
-export function IncidentDashboard() {
+export function IncidentDashboard({ landing = false }: { landing?: boolean }) {
   const [users, setUsers] = useState<UserRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -50,9 +50,12 @@ export function IncidentDashboard() {
     }
   }, []);
 
-  useEffect(() => { void fetchUsers(); }, [fetchUsers]);
+  useEffect(() => {
+    if (!landing) void fetchUsers();
+  }, [fetchUsers, landing]);
 
   useEffect(() => {
+    if (landing) return;
     const source = new EventSource("/api/users/stream");
     source.addEventListener("connected", () => setLiveState("live"));
     source.addEventListener("user.created", (event) => {
@@ -65,13 +68,13 @@ export function IncidentDashboard() {
     source.onerror = () => setLiveState("offline");
     source.onopen = () => setLiveState("live");
     return () => source.close();
-  }, []);
+  }, [landing]);
 
   const visibleUsers = useMemo(() => {
     const needle = query.trim().toLowerCase();
     if (!needle) return users;
     return users.filter((user) =>
-      [user.name, user.email, user.ipAddress, user.location, user.device]
+      [user.name, user.email, user.ipAddress, user.location, user.device, user.course, user.accountType, user.paymentMode, user.amount?.toString()]
         .some((value) => value?.toLowerCase().includes(needle)),
     );
   }, [query, users]);
@@ -94,6 +97,7 @@ export function IncidentDashboard() {
         newId={newId}
         onRefresh={fetchUsers}
         onModeChange={changeMode}
+        landing={landing}
       />
     );
   }
@@ -133,9 +137,14 @@ export function IncidentDashboard() {
         <div className="content" id="overview">
           <div className="page-heading">
             <div><div className="eyebrow"><span>01</span> / SURVEILLANCE OVERVIEW</div><h1>Intelligence <span>Console</span></h1><p>Real-time identity acquisition and network telemetry.</p></div>
-            <div className="heading-actions"><div className={`live-chip ${liveState}`}><Wifi /> {liveState === "live" ? "LIVE FEED" : liveState.toUpperCase()}</div><button className="refresh" onClick={() => void fetchUsers()} disabled={loading}><RefreshCw className={loading ? "spin" : ""} /><span>REFRESH DATA</span></button><SimulatorLink dark /></div>
+            <div className="heading-actions">
+              {landing
+                ? <><SimulatorLink dark /><CapturedDataLink dark /></>
+                : <><div className={`live-chip ${liveState}`}><Wifi /> {liveState === "live" ? "LIVE FEED" : liveState.toUpperCase()}</div><button className="refresh" onClick={() => void fetchUsers()} disabled={loading}><RefreshCw className={loading ? "spin" : ""} /><span>REFRESH DATA</span></button><SimulatorLink dark /></>}
+            </div>
           </div>
 
+          {!landing && <>
           {error && <div className="error-banner"><ShieldAlert /><span><strong>UPLINK ERROR</strong>{error}. Start PostgreSQL and verify your DATABASE_URL.</span><button onClick={() => void fetchUsers()}>RETRY</button></div>}
 
           <div className="stats-grid">
@@ -167,6 +176,7 @@ export function IncidentDashboard() {
             <section className="terminal-card"><div className="card-title"><span><TerminalSquare /> LIVE ACTIVITY LOG</span><i>● ● ●</i></div><div className="terminal-lines"><p><time>SYS</time><b>cybershield@node-7a:~$</b> monitor --stream identities</p><p><time>OK</time><span>Encrypted channel initialized on port 443</span></p><p><time>DB</time><span>PostgreSQL notification listener attached</span></p><p><time className="cyan">SSE</time><span>Dashboard transport: {liveState}</span></p><p className="terminal-cursor"><time>&gt;</time><span>Awaiting incoming payload</span><i /></p></div></section>
             <section className="network-card"><div className="card-title"><span><Gauge /> NETWORK PULSE</span><b>LIVE</b></div><div className="pulse-chart"><div className="grid-lines" /><svg viewBox="0 0 500 110" preserveAspectRatio="none"><path className="area" d="M0,85 C30,82 40,63 70,68 S110,88 135,70 S165,22 195,55 S230,82 260,63 S290,40 315,54 S345,85 370,57 S415,28 440,48 S475,75 500,25 L500,110 L0,110Z"/><path className="line" d="M0,85 C30,82 40,63 70,68 S110,88 135,70 S165,22 195,55 S230,82 260,63 S290,40 315,54 S345,85 370,57 S415,28 440,48 S475,75 500,25"/></svg></div><div className="network-meta"><span>INGRESS <b>2.4 MB/s</b></span><span>LATENCY <b>24 ms</b></span><span>PACKETS <b>18.2K</b></span></div></section>
           </div>
+          </>}
         </div>
       </section>
     </main>
@@ -183,7 +193,7 @@ function ModeSwitch({ mode, onChange, dark = false }: { mode: DashboardMode; onC
 }
 
 function SimpleDashboard({
-  users, visibleUsers, query, setQuery, loading, error, liveState, lastSync, newId, onRefresh, onModeChange,
+  users, visibleUsers, query, setQuery, loading, error, liveState, lastSync, newId, onRefresh, onModeChange, landing,
 }: {
   users: UserRecord[];
   visibleUsers: UserRecord[];
@@ -196,19 +206,25 @@ function SimpleDashboard({
   newId: string | null;
   onRefresh: () => Promise<void>;
   onModeChange: (mode: DashboardMode) => void;
+  landing: boolean;
 }) {
   return (
     <main className="simple-dashboard">
       <header className="simple-header">
-        <div className="simple-brand"><span><Database /></span><div><strong>Data Portal</strong><small>User records dashboard</small></div></div>
+        <div className="simple-brand"><span><Database /></span><div><strong>Police Intelligence Dashboard</strong><small>User records dashboard</small></div></div>
         <ModeSwitch mode="simple" onChange={onModeChange} />
       </header>
       <section className="simple-content">
         <div className="simple-heading">
-          <div><p>Dashboard</p><h1>Captured Data</h1><span>View and manage user data received from connected applications.</span></div>
-          <div className="simple-heading-actions"><button className="simple-refresh" onClick={() => void onRefresh()} disabled={loading}><RefreshCw className={loading ? "spin" : ""} /> Refresh data</button><SimulatorLink /></div>
+          <div>{landing ? <><p>Dashboard</p><h1>Cyber Suraksha</h1><span>Select a destination.</span></> : <><p>Dashboard</p><h1>Captured Data</h1><span>View and manage user data received from connected applications.</span></>}</div>
+          <div className="simple-heading-actions">
+            {landing
+              ? <><SimulatorLink /><CapturedDataLink /></>
+              : <><button className="simple-refresh" onClick={() => void onRefresh()} disabled={loading}><RefreshCw className={loading ? "spin" : ""} /> Refresh data</button><SimulatorLink /></>}
+          </div>
         </div>
 
+        {!landing && <>
         {error && <div className="simple-error"><ShieldAlert /><div><strong>Could not load captured data</strong><span>{error}. Check the database connection and try again.</span></div><button onClick={() => void onRefresh()}>Try again</button></div>}
 
         <div className="simple-summary">
@@ -232,6 +248,7 @@ function SimpleDashboard({
           </div>
           <footer className="simple-panel-foot"><span><i className={liveState} />Updates are received automatically</span><span>Last updated {lastSync ? lastSync.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "—"}</span></footer>
         </section>
+        </>}
       </section>
     </main>
   );
@@ -241,10 +258,10 @@ function SimpleUserRow({ user, fresh }: { user: UserRecord; fresh: boolean }) {
   const initials = user.name.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase();
   return (
     <tr className={fresh ? "simple-fresh" : ""}>
-      <td><div className="simple-user"><span>{initials}</span><div><strong>{user.name}</strong><small>{user.externalId ?? `#${user.id.slice(0, 8)}`}</small></div>{fresh && <em>New</em>}</div></td>
+      <td><div className="simple-user"><span>{initials}</span><div><strong>{user.name}</strong><small>{user.course ? `${user.course} · ${user.accountType || "Account"}` : user.externalId ?? `#${user.id.slice(0, 8)}`}</small></div>{fresh && <em>New</em>}</div></td>
       <td><strong>{user.email}</strong><small>{user.phone || "Not provided"}</small></td>
       <td><strong>{user.location || "Not provided"}</strong><small>{user.ipAddress || "No IP address"}</small></td>
-      <td><strong>{user.device || "Unknown device"}</strong></td>
+      <td><strong>{user.device || "Unknown device"}</strong>{user.paymentMode && user.amount !== null && <small>{user.paymentMode} · ₹{user.amount.toLocaleString("en-IN")}</small>}</td>
       <td><span className={`simple-risk ${user.threatLevel}`}>{user.threatLevel}</span></td>
       <td><span className="simple-status"><i />{user.status}</span></td>
       <td><strong>{relativeTime(user.createdAt)}</strong><small>{new Date(user.createdAt).toLocaleDateString()}</small></td>
@@ -254,8 +271,16 @@ function SimpleUserRow({ user, fresh }: { user: UserRecord; fresh: boolean }) {
 
 function SimulatorLink({ dark = false }: { dark?: boolean }) {
   return (
-    <a className={`simulator-link ${dark ? "dark" : ""}`} href="/scam-simulator" target="_blank" rel="noopener noreferrer" title="Open the scam awareness simulator in a new tab">
-      <GraduationCap /><span>SCAM SIMULATOR</span><ExternalLink />
+    <a className={`simulator-link ${dark ? "dark" : ""}`} href="/" target="_blank" rel="noopener noreferrer" title="Open Cyber Scam Awareness in a new tab">
+      <GraduationCap /><span>CYBER SCAM AWARENESS</span><Home />
+    </a>
+  );
+}
+
+function CapturedDataLink({ dark = false }: { dark?: boolean }) {
+  return (
+    <a className={`simulator-link ${dark ? "dark" : ""}`} href="/captured-data" target="_blank" rel="noopener noreferrer" title="Open Captured Data in a new tab">
+      <Database /><span>CAPTURED DATA</span>
     </a>
   );
 }
@@ -272,7 +297,7 @@ function StatCard({ icon, label, value, delta, tone, bars }: { icon: React.React
 
 function UserRow({ user, index, fresh }: { user: UserRecord; index: number; fresh: boolean }) {
   const initials = user.name.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase();
-  return <tr className={fresh ? "fresh-row" : ""}><td><div className="identity"><span className={`avatar avatar-${index % 5}`}>{initials}</span><div><strong>{user.name}</strong><small>ID_{user.externalId ?? user.id.slice(0, 8).toUpperCase()}</small></div>{fresh && <em>NEW</em>}</div></td><td><strong className="mono-value">{user.email}</strong><small>{user.phone || "NO PHONE VECTOR"}</small></td><td><strong className="mono-value">{user.location || "UNKNOWN SECTOR"}</strong><small>{user.ipAddress || "IP MASKED"}</small></td><td><strong>{user.device || "Unknown device"}</strong><small>MOBILE ENDPOINT</small></td><td><span className={`threat ${user.threatLevel}`}>{user.threatLevel}</span></td><td><span className="status"><i />{user.status}</span></td><td><strong className="mono-value">{relativeTime(user.lastSeen)}</strong><small>{new Date(user.lastSeen).toLocaleDateString()}</small></td></tr>;
+  return <tr className={fresh ? "fresh-row" : ""}><td><div className="identity"><span className={`avatar avatar-${index % 5}`}>{initials}</span><div><strong>{user.name}</strong><small>{user.course ? `${user.course} · ${user.accountType || "ACCOUNT"}` : `ID_${user.externalId ?? user.id.slice(0, 8).toUpperCase()}`}</small></div>{fresh && <em>NEW</em>}</div></td><td><strong className="mono-value">{user.email}</strong><small>{user.phone || "NO PHONE VECTOR"}</small></td><td><strong className="mono-value">{user.location || "UNKNOWN SECTOR"}</strong><small>{user.ipAddress || "IP MASKED"}</small></td><td><strong>{user.device || "Unknown device"}</strong><small>{user.paymentMode && user.amount !== null ? `${user.paymentMode} · ₹${user.amount.toLocaleString("en-IN")}` : "MOBILE ENDPOINT"}</small></td><td><span className={`threat ${user.threatLevel}`}>{user.threatLevel}</span></td><td><span className="status"><i />{user.status}</span></td><td><strong className="mono-value">{relativeTime(user.lastSeen)}</strong><small>{new Date(user.lastSeen).toLocaleDateString()}</small></td></tr>;
 }
 
 function relativeTime(date: string) {
@@ -284,7 +309,7 @@ function relativeTime(date: string) {
 }
 
 function exportCsv(users: UserRecord[]) {
-  const fields: (keyof UserRecord)[] = ["id", "name", "email", "phone", "ipAddress", "device", "location", "status", "threatLevel", "createdAt"];
+  const fields: (keyof UserRecord)[] = ["id", "name", "email", "phone", "ipAddress", "device", "location", "course", "accountType", "paymentMode", "amount", "status", "threatLevel", "createdAt"];
   const csv = [fields.join(","), ...users.map((user) => fields.map((field) => `"${String(user[field] ?? "").replaceAll('"', '""')}"`).join(","))].join("\n");
   const link = document.createElement("a");
   link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));

@@ -1,0 +1,135 @@
+- main [ref=f40e2]:
+  - complementary [ref=f40e3]:
+    - generic "CyberShield" [ref=f40e4]:
+      - generic [ref=f40e5]: CS
+      - generic [ref=f40e7]:
+        - strong [ref=f40e8]: CYBERSHIELD
+        - generic [ref=f40e9]: INTELLIGENCE DIVISION
+    - generic [ref=f40e10]: COMMAND CENTER
+    - navigation [ref=f40e11]:
+      - link "Overview" [ref=f40e12] [cursor=pointer]:
+        - /url: "#overview"
+      - link "Captured identities 0" [ref=f40e19] [cursor=pointer]:
+        - /url: "#targets"
+        - text: Captured identities
+        - generic [ref=f40e25]: "0"
+      - link "Network map" [ref=f40e26] [cursor=pointer]:
+        - /url: "#network"
+      - link "Signal intercepts" [ref=f40e32] [cursor=pointer]:
+        - /url: "#signals"
+    - generic [ref=f40e39]: SYSTEMS
+    - navigation [ref=f40e40]:
+      - link "Data vault" [ref=f40e41] [cursor=pointer]:
+        - /url: "#database"
+      - link [ref=f40e46] [cursor=pointer]:
+        - /url: "#security"
+        - text: Threat matrix
+        - emphasis [ref=f40e49]: "0"
+      - link "Terminal" [ref=f40e50] [cursor=pointer]:
+        - /url: "#terminal"
+    - generic [ref=f40e54]:
+      - generic [ref=f40e57]:
+        - generic [ref=f40e58]: NODE STATUS
+        - strong [ref=f40e59]: OPERATIONAL
+      - generic [ref=f40e61]: 99.9%
+  - generic [ref=f40e62]:
+    - generic [ref=f40e63]:
+      - generic [ref=f40e64]:
+        - generic [ref=f40e66]: SECURE UPLINK ESTABLISHED
+        - generic [ref=f40e67]: //
+        - generic [ref=f40e68]: NODE_7A
+        - generic [ref=f40e69]: //
+        - generic [ref=f40e70]: "--:--:-- IST"
+      - generic [ref=f40e71]:
+        - group "Dashboard display mode" [ref=f40e72]:
+          - button "Hacker" [pressed] [ref=f40e73] [cursor=pointer]
+          - button "Simple" [ref=f40e77] [cursor=pointer]
+        - button "Notifications" [ref=f40e80] [cursor=pointer]
+        - generic [ref=f40e85]:
+          - generic [ref=f40e86]: OP
+          - generic [ref=f40e87]:
+            - generic [ref=f40e88]: OPERATOR
+            - strong [ref=f40e89]: GHOST_01
+    - generic [ref=f40e92]:
+      - generic [ref=f40e93]:
+        - generic [ref=f40e94]:
+          - generic [ref=f40e95]: 01 / SURVEILLANCE OVERVIEW
+          - heading "Intelligence Console" [level=1] [ref=f40e96]
+          - paragraph [ref=f40e97]: Real-time identity acquisition and network telemetry.
+        - generic [ref=f40e98]:
+          - generic [ref=f40e99]: CONNECTING
+          - button "REFRESH DATA" [disabled] [ref=f40e104] [cursor=pointer]
+          - link "CYBER SCAM AWARENESS" [ref=f40e111] [cursor=pointer]:
+            - /url: /
+      - generic [ref=f40e119]:
+        - article [ref=f40e120]:
+          - generic [ref=f40e121]: + 12.8%
+          - generic [ref=f40e133]: "00"
+          - generic [ref=f40e134]: CAPTURED IDENTITIES
+        - article [ref=f40e148]:
+          - generic [ref=f40e149]: + 8.4%
+          - generic [ref=f40e155]: "00"
+          - generic [ref=f40e156]: ACTIVE TARGETS
+        - article [ref=f40e170]:
+          - generic [ref=f40e171]: + 3 ALERTS
+          - generic [ref=f40e176]: "00"
+          - generic [ref=f40e177]: HIGH-RISK SIGNALS
+        - article [ref=f40e191]:
+          - generic [ref=f40e192]: + GLOBAL
+          - generic [ref=f40e200]: "00"
+          - generic [ref=f40e201]: REGIONS MAPPED
+      - generic [ref=f40e215]:
+        - generic [ref=f40e216]:
+          - generic [ref=f40e223]:
+            - heading "Captured identities" [level=2] [ref=f40e224]
+            - paragraph [ref=f40e225]: Incoming mobile intelligence records
+          - generic [ref=f40e226]:
+            - textbox [ref=f40e231]:
+              - /placeholder: Search records...
+            - button "Export current records" [ref=f40e232] [cursor=pointer]
+        - generic [ref=f40e236]:
+          - table [ref=f40e237]:
+            - rowgroup [ref=f40e238]:
+              - row [ref=f40e239]:
+                - columnheader "IDENTITY" [ref=f40e240]
+                - columnheader "CONTACT VECTOR" [ref=f40e241]
+                - columnheader "ORIGIN / IP" [ref=f40e242]
+                - columnheader "DEVICE" [ref=f40e243]
+                - columnheader "THREAT" [ref=f40e244]
+                - columnheader "STATUS" [ref=f40e245]
+                - columnheader "LAST SEEN" [ref=f40e246]
+            - rowgroup
+          - generic [ref=f40e247]: ESTABLISHING DATA UPLINK...
+        - generic [ref=f40e250]:
+          - generic [ref=f40e251]: STREAM RECONNECTING
+          - generic [ref=f40e253]: SHOWING 0 / 0 RECORDS
+          - generic [ref=f40e254]: LAST SYNC --:--:--
+      - generic [ref=f40e255]:
+        - generic [ref=f40e256]:
+          - generic [ref=f40e257]:
+            - generic [ref=f40e258]: LIVE ACTIVITY LOG
+            - generic [ref=f40e262]: ● ● ●
+          - generic [ref=f40e263]:
+            - paragraph [ref=f40e264]:
+              - time [ref=f40e265]: SYS
+              - text: cybershield@node-7a:~$ monitor --stream identities
+            - paragraph [ref=f40e266]:
+              - time [ref=f40e267]: OK
+              - text: Encrypted channel initialized on port 443
+            - paragraph [ref=f40e268]:
+              - time [ref=f40e269]: DB
+              - text: PostgreSQL notification listener attached
+            - paragraph [ref=f40e270]:
+              - time [ref=f40e271]: SSE
+              - generic [ref=f40e272]: "Dashboard transport: connecting"
+            - paragraph [ref=f40e273]:
+              - time [ref=f40e274]: ">"
+              - text: Awaiting incoming payload
+        - generic [ref=f40e276]:
+          - generic [ref=f40e277]:
+            - generic [ref=f40e278]: NETWORK PULSE
+            - generic [ref=f40e282]: LIVE
+          - generic [ref=f40e288]:
+            - generic [ref=f40e289]: INGRESS 2.4 MB/s
+            - generic [ref=f40e290]: LATENCY 24 ms
+            - generic [ref=f40e291]: PACKETS 18.2K

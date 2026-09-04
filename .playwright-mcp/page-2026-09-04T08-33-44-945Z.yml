@@ -1,0 +1,21 @@
+- generic [active] [ref=f43e1]:
+  - button "Open Next.js Dev Tools" [ref=f43e118] [cursor=pointer]
+  - alert [ref=f43e122]
+  - main [ref=f43e123]:
+    - generic [ref=f43e124]:
+      - generic [ref=f43e131]:
+        - strong [ref=f43e132]: Data Portal
+        - generic [ref=f43e133]: User records dashboard
+      - group "Dashboard display mode" [ref=f43e134]:
+        - button "Hacker" [ref=f43e135] [cursor=pointer]
+        - button "Simple" [pressed] [ref=f43e139] [cursor=pointer]
+    - generic [ref=f43e143]:
+      - generic [ref=f43e144]:
+        - paragraph [ref=f43e145]: Dashboard
+        - heading "Cyber Suraksha" [level=1] [ref=f43e146]
+        - generic [ref=f43e147]: Select a destination.
+      - generic [ref=f43e148]:
+        - link "CYBER SCAM AWARENESS" [ref=f43e149] [cursor=pointer]:
+          - /url: /
+        - link "CAPTURED DATA" [ref=f43e157] [cursor=pointer]:
+          - /url: /captured-data

@@ -43,6 +43,10 @@ export function ensureSchema() {
         ip_address INET,
         device TEXT,
         location TEXT,
+        course TEXT,
+        account_type TEXT,
+        payment_mode TEXT,
+        amount NUMERIC(12, 2),
         status TEXT NOT NULL DEFAULT 'ACTIVE',
         threat_level TEXT NOT NULL DEFAULT 'low'
           CHECK (threat_level IN ('low', 'medium', 'high', 'critical')),
@@ -51,6 +55,10 @@ export function ensureSchema() {
       );
       CREATE INDEX IF NOT EXISTS captured_users_created_at_idx
         ON captured_users (created_at DESC);
+      ALTER TABLE captured_users ADD COLUMN IF NOT EXISTS payment_mode TEXT;
+      ALTER TABLE captured_users ADD COLUMN IF NOT EXISTS amount NUMERIC(12, 2);
+      ALTER TABLE captured_users ADD COLUMN IF NOT EXISTS course TEXT;
+      ALTER TABLE captured_users ADD COLUMN IF NOT EXISTS account_type TEXT;
     `);
 
     if (process.env.SEED_DEMO_DATA !== "false") {
@@ -80,6 +88,10 @@ type UserRow = QueryResultRow & {
   ip_address: string | null;
   device: string | null;
   location: string | null;
+  course: string | null;
+  account_type: string | null;
+  payment_mode: string | null;
+  amount: string | number | null;
   status: string;
   threat_level: UserRecord["threatLevel"];
   last_seen: Date;
@@ -96,6 +108,10 @@ export function toUser(row: UserRow): UserRecord {
     ipAddress: row.ip_address,
     device: row.device,
     location: row.location,
+    course: row.course,
+    accountType: row.account_type,
+    paymentMode: row.payment_mode,
+    amount: row.amount === null ? null : Number(row.amount),
     status: row.status,
     threatLevel: row.threat_level,
     lastSeen: row.last_seen.toISOString(),
@@ -119,8 +135,8 @@ export async function insertUser(input: UserInput): Promise<UserRecord> {
     await client.query("BEGIN");
     const result = await client.query<UserRow>(
       `INSERT INTO captured_users
-        (external_id, name, email, phone, ip_address, device, location, status, threat_level)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        (external_id, name, email, phone, ip_address, device, location, course, account_type, payment_mode, amount, status, threat_level)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
        RETURNING *`,
       [
         input.externalId || null,
@@ -130,6 +146,10 @@ export async function insertUser(input: UserInput): Promise<UserRecord> {
         input.ipAddress || null,
         input.device || null,
         input.location || null,
+        input.course || null,
+        input.accountType || null,
+        input.paymentMode || null,
+        input.amount ?? null,
         input.status || "ACTIVE",
         input.threatLevel ?? "low",
       ],

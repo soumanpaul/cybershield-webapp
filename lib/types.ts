@@ -9,6 +9,10 @@ export type UserRecord = {
   ipAddress: string | null;
   device: string | null;
   location: string | null;
+  course: string | null;
+  accountType: string | null;
+  paymentMode: string | null;
+  amount: number | null;
   status: string;
   threatLevel: ThreatLevel;
   lastSeen: string;
@@ -23,6 +27,10 @@ export type UserInput = {
   ipAddress?: string;
   device?: string;
   location?: string;
+  course?: string;
+  accountType?: string;
+  paymentMode?: string;
+  amount?: number;
   status?: string;
   threatLevel?: ThreatLevel;
 };

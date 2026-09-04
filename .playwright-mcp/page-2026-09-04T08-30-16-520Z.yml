@@ -1,0 +1,64 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - complementary [ref=e3]:
+      - generic "CyberShield" [ref=e4]:
+        - generic [ref=e5]: CS
+        - generic [ref=e7]:
+          - strong [ref=e8]: CYBERSHIELD
+          - generic [ref=e9]: INTELLIGENCE DIVISION
+      - generic [ref=e10]: COMMAND CENTER
+      - navigation [ref=e11]:
+        - link "Overview" [ref=e12] [cursor=pointer]:
+          - /url: "#overview"
+        - link "Captured identities 0" [ref=e19] [cursor=pointer]:
+          - /url: "#targets"
+          - text: Captured identities
+          - generic [ref=e25]: "0"
+        - link "Network map" [ref=e26] [cursor=pointer]:
+          - /url: "#network"
+        - link "Signal intercepts" [ref=e32] [cursor=pointer]:
+          - /url: "#signals"
+      - generic [ref=e39]: SYSTEMS
+      - navigation [ref=e40]:
+        - link "Data vault" [ref=e41] [cursor=pointer]:
+          - /url: "#database"
+        - link [ref=e46] [cursor=pointer]:
+          - /url: "#security"
+          - text: Threat matrix
+          - emphasis [ref=e49]: "0"
+        - link "Terminal" [ref=e50] [cursor=pointer]:
+          - /url: "#terminal"
+      - generic [ref=e54]:
+        - generic [ref=e57]:
+          - generic [ref=e58]: NODE STATUS
+          - strong [ref=e59]: OPERATIONAL
+        - generic [ref=e61]: 99.9%
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e66]: SECURE UPLINK ESTABLISHED
+          - generic [ref=e67]: //
+          - generic [ref=e68]: NODE_7A
+          - generic [ref=e69]: //
+          - generic [ref=e70]: 14:00:16 IST
+        - generic [ref=e71]:
+          - group "Dashboard display mode" [ref=e72]:
+            - button "Hacker" [pressed] [ref=e73] [cursor=pointer]
+            - button "Simple" [ref=e77] [cursor=pointer]
+          - button "Notifications" [ref=e80] [cursor=pointer]
+          - generic [ref=e85]:
+            - generic [ref=e86]: OP
+            - generic [ref=e87]:
+              - generic [ref=e88]: OPERATOR
+              - strong [ref=e89]: GHOST_01
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - generic [ref=e95]: 01 / SURVEILLANCE OVERVIEW
+          - heading "Intelligence Console" [level=1] [ref=e96]
+          - paragraph [ref=e97]: Real-time identity acquisition and network telemetry.
+        - generic [ref=e98]:
+          - link "CYBER SCAM AWARENESS" [ref=e99] [cursor=pointer]:
+            - /url: /
+          - link "CAPTURED DATA" [ref=e107] [cursor=pointer]:
+            - /url: /captured-data
+  - alert [ref=e113]
