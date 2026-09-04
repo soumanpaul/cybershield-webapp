@@ -1,7 +1,13 @@
 import {
-  BarChart3, BriefcaseBusiness, Fish, HandCoins, Heart, MapPin, Phone, QrCode,
+  BadgeCheck, BarChart3, BriefcaseBusiness, Fish, HandCoins, Heart, MapPin, Phone, QrCode,
   ShieldAlert, Smartphone, UserRound, UsersRound, WalletCards, type LucideIcon,
 } from "lucide-react";
+import type { StaticImageData } from "next/image";
+import upiScamVisual from "@/ux/upi-scam.png";
+import qrCodeScamVisual from "@/ux/qr-code-scam.png";
+import otpScamVisual from "@/ux/otp-scam.png";
+import fakeCertificationScamVisual from "@/ux/fake-certification.png";
+import digitalArrestScamVisual from "@/ux/digital-arrest.png";
 
 export type ScamTone = "blue" | "green" | "violet" | "orange" | "pink";
 
@@ -11,6 +17,10 @@ export interface ScamDetail {
   tone: ScamTone;
   summary: string;
   example: string;
+  visual?: {
+    src: StaticImageData;
+    alt: string;
+  };
   flow: readonly [string, string, string];
   warningSigns: readonly string[];
   safetySteps: readonly string[];
@@ -21,6 +31,10 @@ export const SCAM_CATEGORIES: ScamDetail[] = [
     name: "Digital Arrest", icon: ShieldAlert, tone: "blue",
     summary: "A caller pretends to be police or another authority and says you are involved in a crime.",
     example: "You receive a video call saying a parcel or bank account linked to you was used illegally. The caller demands secrecy and money to avoid arrest.",
+    visual: {
+      src: digitalArrestScamVisual,
+      alt: "Three-step visual showing how a fake officer creates fear and demands money during a digital arrest scam",
+    },
     flow: ["Fake officer contacts you", "Fear and secrecy are created", "Money is demanded for release"],
     warningSigns: ["Threats of immediate arrest", "Orders to stay on a video call", "Payment to a ‘safe account’"],
     safetySteps: ["End the call", "Verify through an official number", "Never transfer money to avoid arrest"],
@@ -29,6 +43,10 @@ export const SCAM_CATEGORIES: ScamDetail[] = [
     name: "UPI Collect Request", icon: WalletCards, tone: "green",
     summary: "A collect request makes you approve a payment while the scammer claims you are receiving money.",
     example: "A buyer says they are sending you money, but your UPI app shows a collect request asking for your PIN.",
+    visual: {
+      src: upiScamVisual,
+      alt: "Five-step visual showing how a UPI collect request scam takes money from a victim",
+    },
     flow: ["Scammer promises a payment", "A collect request appears", "Your PIN authorizes money going out"],
     warningSigns: ["PIN requested to receive money", "Unexpected collect request", "Pressure to approve quickly"],
     safetySteps: ["Decline unknown requests", "Check whether it says PAY or RECEIVE", "Remember: receiving money needs no UPI PIN"],
@@ -37,6 +55,10 @@ export const SCAM_CATEGORIES: ScamDetail[] = [
     name: "QR Code Scam", icon: QrCode, tone: "violet",
     summary: "A QR code is used to make you pay, open a harmful website, or install something unsafe.",
     example: "Someone says scanning their QR code will send a refund, but it opens a payment screen from your account.",
+    visual: {
+      src: qrCodeScamVisual,
+      alt: "Three-step visual showing how an unknown QR code can open a payment screen or harmful website",
+    },
     flow: ["A refund or reward is promised", "You are asked to scan a QR code", "Payment or a harmful page opens"],
     warningSigns: ["Scan to receive money", "QR code from an unknown person", "Unexpected payment screen"],
     safetySteps: ["Do not scan unknown codes", "Read the payment screen carefully", "Close the app if the purpose changes"],
@@ -45,6 +67,10 @@ export const SCAM_CATEGORIES: ScamDetail[] = [
     name: "OTP Scam", icon: Phone, tone: "orange",
     summary: "A scammer tricks you into sharing a one-time password that can approve a login or transaction.",
     example: "A caller claiming to be from your bank asks for the OTP just sent to your phone to ‘verify’ your account.",
+    visual: {
+      src: otpScamVisual,
+      alt: "Three-step visual showing how sharing an OTP lets a scammer take over an account or authorize a payment",
+    },
     flow: ["Scammer triggers an OTP", "They ask you to read it aloud", "Your account or payment is taken over"],
     warningSigns: ["Anyone asking for an OTP", "Fake bank or support call", "Urgent account-block warning"],
     safetySteps: ["Never share an OTP", "Read the full OTP message", "Call your bank using its official number"],
@@ -112,6 +138,18 @@ export const SCAM_CATEGORIES: ScamDetail[] = [
     flow: ["Service-block warning arrives", "Remote-access app or details are requested", "Phone and accounts are controlled"],
     warningSigns: ["Immediate SIM deactivation threat", "Remote-access app request", "KYC through a personal number"],
     safetySteps: ["Visit the official app or branch", "Never install remote-access software", "Contact the provider directly"],
+  },
+  {
+    name: "Fake Certification Scam", icon: BadgeCheck, tone: "orange",
+    summary: "A fraudster sells a certificate that is fake, unrecognized, or issued without genuine training or assessment.",
+    example: "An advertisement promises a government-approved professional certificate in one day. After payment, you receive an unverifiable PDF and the seller disappears.",
+    visual: {
+      src: fakeCertificationScamVisual,
+      alt: "Four-step visual showing how a fake certification advertisement takes payment and delivers an unverifiable certificate",
+    },
+    flow: ["A valuable certificate is promised", "Payment and personal documents are requested", "A fake or unusable certificate is delivered"],
+    warningSigns: ["Guaranteed certificate without training or an exam", "Claims of government approval without a verifiable registration", "Payment requested through a personal UPI ID or account"],
+    safetySteps: ["Verify the issuer on the official regulator or institution website", "Ask employers or colleges whether they recognize the certificate", "Do not share identity documents until the provider is verified"],
   },
   {
     name: "Phishing", icon: Fish, tone: "violet",

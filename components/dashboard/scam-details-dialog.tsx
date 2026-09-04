@@ -1,6 +1,7 @@
 "use client";
 
 import { AlertTriangle, ArrowRight, CheckCircle2, ExternalLink, Phone, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
@@ -51,6 +52,18 @@ export function ScamDetailsDialog({ scam, onOpenChange }: ScamDetailsDialogProps
 
           <section>
             <h3 className="text-sm font-extrabold text-slate-900 sm:text-base">{t("How this scam happens")}</h3>
+            {scam.visual && (
+              <figure className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-sky-50 to-white p-2 shadow-sm sm:p-3">
+                <Image
+                  src={scam.visual.src}
+                  alt={t(scam.visual.alt)}
+                  className="h-auto w-full rounded-xl object-contain"
+                  sizes="(max-width: 768px) calc(100vw - 48px), 1080px"
+                  priority
+                />
+                <figcaption className="sr-only">{t(scam.visual.alt)}</figcaption>
+              </figure>
+            )}
             <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-center">
               {scam.flow.map((step, index) => (
                 <div key={step} className="contents">

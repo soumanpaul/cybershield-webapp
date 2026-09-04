@@ -61,3 +61,12 @@ Required fields are `name` and `email`. `threatLevel` accepts `low`, `medium`, `
 - Use a managed PostgreSQL URL that supports persistent connections and `LISTEN/NOTIFY`.
 - Run this application on a long-lived Node.js host for SSE. Some serverless platforms impose response-duration limits; on those platforms use a managed realtime transport instead.
 - Set `MOBILE_API_KEY` in production and restrict `Access-Control-Allow-Origin` to your trusted origin if this endpoint is also called from a browser-based mobile client.
+
+
+
+ Local URLs:
+
+  - New Cyber Suraksha UX: http://localhost:3000 (http://localhost:3000)
+  - Previous captured-data dashboard: http://localhost:3000/data-dashboard (http://localhost:3000/data-dashboard)
+  - Existing full scam simulator: http://localhost:3000/scam-simulator (http://localhost:3000/scam-simulator)
+
