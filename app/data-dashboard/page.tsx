@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { IncidentDashboard } from "@/components/incident-dashboard";
+import { PoliceAwarenessDashboard } from "@/components/police-awareness-dashboard";
 
 export const metadata: Metadata = {
-  title: "Dashboard | Cyber Suraksha",
-  description: "Open Cyber Scam Awareness or view captured data.",
+  title: "CyberRakshak Police Dashboard",
+  description: "Cyber safety awareness insights for authorized police personnel.",
 };
 
 export default function DataDashboardPage() {
-  return <IncidentDashboard landing />;
+  return <PoliceAwarenessDashboard />;
 }
