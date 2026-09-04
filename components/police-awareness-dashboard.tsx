@@ -26,7 +26,7 @@ import { useState } from "react";
 const navigation = [
   { label: "Overview", icon: Home, href: "#overview", external: false },
   { label: "Scam Insights", icon: BarChart3, href: "/captured-data", external: true },
-  { label: "Awareness Programs", icon: GraduationCap, href: "/", external: true },
+  { label: "Awareness Programs", icon: GraduationCap, href: "/data-dashboard", external: true },
   { label: "Citizen Engagement", icon: Users, href: "#engagement", external: false },
   { label: "Resources", icon: FileText, href: "#resources", external: false },
 ] as const;

@@ -173,7 +173,7 @@ function ReportFlow() {
     <FlowArrow />
     <MiniPhone title="Act Now"><strong className={styles.redText}>FINANCIAL FRAUD – ACT NOW</strong><div className={styles.actNow}><a href="tel:1930"><Phone />Call cybercrime helpline <b>1930</b></a><span><Landmark />Contact your bank immediately</span></div><NumberList items={[`Keep ${payment} transaction ID, account details, amount, date/time, screenshots and phone number used.`]} /><MiniButton tone="red" onClick={() => setStage(2)}>Next</MiniButton></MiniPhone>
     <FlowArrow />
-    <MiniPhone title="Report & Next Steps"><div className={`${styles.nextLinks} ${stage < 2 ? styles.pending : ""}`}><a href="https://cybercrime.gov.in" target="_blank" rel="noreferrer"><FileText />Report on National Cyber Crime Portal<ExternalLink /></a><a href="tel:112"><ShieldAlert />Inform Local Police<ChevronRight /></a><button onClick={downloadChecklist}><Download />Save Evidence Guide<ChevronRight /></button><a href="tel:1930"><Phone />Helpline Numbers & Resources<ChevronRight /></a></div><Link href="/data-dashboard" className={styles.dataLink}>Open Incident Dashboard <ArrowRight /></Link></MiniPhone>
+    <MiniPhone title="Report & Next Steps"><div className={`${styles.nextLinks} ${stage < 2 ? styles.pending : ""}`}><a href="https://cybercrime.gov.in" target="_blank" rel="noreferrer"><FileText />Report on National Cyber Crime Portal<ExternalLink /></a><a href="tel:112"><ShieldAlert />Inform Local Police<ChevronRight /></a><button onClick={downloadChecklist}><Download />Save Evidence Guide<ChevronRight /></button><a href="tel:1930"><Phone />Helpline Numbers & Resources<ChevronRight /></a></div><Link href="/" className={styles.dataLink}>Open Incident Dashboard <ArrowRight /></Link></MiniPhone>
   </FlowGroup>;
 }
 

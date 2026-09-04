@@ -10,18 +10,18 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { UserRecord } from "@/lib/types";
 import { Logo } from "@/components/logo";
 
-type LiveState = "connecting" | "live" | "offline";
+type LiveState = "manual";
 type DashboardMode = "hacker" | "simple";
 
 export function IncidentDashboard({ landing = false }: { landing?: boolean }) {
   const [users, setUsers] = useState<UserRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [liveState, setLiveState] = useState<LiveState>("connecting");
+  const liveState: LiveState = "manual";
   const [query, setQuery] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [lastSync, setLastSync] = useState<Date | null>(null);
-  const [newId, setNewId] = useState<string | null>(null);
+  const newId: string | null = null;
   const [mode, setMode] = useState<DashboardMode>("hacker");
 
   useEffect(() => {
@@ -53,22 +53,6 @@ export function IncidentDashboard({ landing = false }: { landing?: boolean }) {
   useEffect(() => {
     if (!landing) void fetchUsers();
   }, [fetchUsers, landing]);
-
-  useEffect(() => {
-    if (landing) return;
-    const source = new EventSource("/api/users/stream");
-    source.addEventListener("connected", () => setLiveState("live"));
-    source.addEventListener("user.created", (event) => {
-      const user = JSON.parse((event as MessageEvent).data) as UserRecord;
-      setUsers((current) => [user, ...current.filter((item) => item.id !== user.id)].slice(0, 200));
-      setLastSync(new Date());
-      setNewId(user.id);
-      window.setTimeout(() => setNewId(null), 2600);
-    });
-    source.onerror = () => setLiveState("offline");
-    source.onopen = () => setLiveState("live");
-    return () => source.close();
-  }, [landing]);
 
   const visibleUsers = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -140,7 +124,7 @@ export function IncidentDashboard({ landing = false }: { landing?: boolean }) {
             <div className="heading-actions">
               {landing
                 ? <><SimulatorLink dark /><CapturedDataLink dark /></>
-                : <><div className={`live-chip ${liveState}`}><Wifi /> {liveState === "live" ? "LIVE FEED" : liveState.toUpperCase()}</div><button className="refresh" onClick={() => void fetchUsers()} disabled={loading}><RefreshCw className={loading ? "spin" : ""} /><span>REFRESH DATA</span></button><SimulatorLink dark /></>}
+                : <><div className={`live-chip ${liveState}`}><Wifi /> MANUAL REFRESH</div><button className="refresh" onClick={() => void fetchUsers()} disabled={loading}><RefreshCw className={loading ? "spin" : ""} /><span>REFRESH DATA</span></button><SimulatorLink dark /></>}
             </div>
           </div>
 
@@ -169,11 +153,11 @@ export function IncidentDashboard({ landing = false }: { landing?: boolean }) {
               {!loading && visibleUsers.length === 0 && <div className="empty-state"><div className="radar"><span /></div><strong>NO SIGNALS DETECTED</strong><p>{query ? "No records match this search vector." : "Awaiting first mobile transmission."}</p><code>POST /api/mobile/users</code></div>}
               {loading && users.length === 0 && <div className="loading-state"><Activity className="spin" /> ESTABLISHING DATA UPLINK...</div>}
             </div>
-            <div className="panel-foot"><span><i /> STREAM {liveState === "live" ? "CONNECTED" : "RECONNECTING"}</span><span>SHOWING {visibleUsers.length} / {users.length} RECORDS</span><span>LAST SYNC {lastSync ? lastSync.toLocaleTimeString([], { hour12: false }) : "--:--:--"}</span></div>
+            <div className="panel-foot"><span><i /> LIVE STREAM DISABLED</span><span>SHOWING {visibleUsers.length} / {users.length} RECORDS</span><span>LAST SYNC {lastSync ? lastSync.toLocaleTimeString([], { hour12: false }) : "--:--:--"}</span></div>
           </section>
 
           <div className="lower-grid">
-            <section className="terminal-card"><div className="card-title"><span><TerminalSquare /> LIVE ACTIVITY LOG</span><i>● ● ●</i></div><div className="terminal-lines"><p><time>SYS</time><b>cybershield@node-7a:~$</b> monitor --stream identities</p><p><time>OK</time><span>Encrypted channel initialized on port 443</span></p><p><time>DB</time><span>PostgreSQL notification listener attached</span></p><p><time className="cyan">SSE</time><span>Dashboard transport: {liveState}</span></p><p className="terminal-cursor"><time>&gt;</time><span>Awaiting incoming payload</span><i /></p></div></section>
+            <section className="terminal-card"><div className="card-title"><span><TerminalSquare /> ACTIVITY LOG</span><i>● ● ●</i></div><div className="terminal-lines"><p><time>SYS</time><b>cybershield@node-7a:~$</b> monitor --manual identities</p><p><time>OK</time><span>Encrypted channel initialized on port 443</span></p><p><time>DB</time><span>Live database listener disabled</span></p><p><time className="cyan">API</time><span>Dashboard transport: manual refresh</span></p><p className="terminal-cursor"><time>&gt;</time><span>Use refresh to load new records</span><i /></p></div></section>
             <section className="network-card"><div className="card-title"><span><Gauge /> NETWORK PULSE</span><b>LIVE</b></div><div className="pulse-chart"><div className="grid-lines" /><svg viewBox="0 0 500 110" preserveAspectRatio="none"><path className="area" d="M0,85 C30,82 40,63 70,68 S110,88 135,70 S165,22 195,55 S230,82 260,63 S290,40 315,54 S345,85 370,57 S415,28 440,48 S475,75 500,25 L500,110 L0,110Z"/><path className="line" d="M0,85 C30,82 40,63 70,68 S110,88 135,70 S165,22 195,55 S230,82 260,63 S290,40 315,54 S345,85 370,57 S415,28 440,48 S475,75 500,25"/></svg></div><div className="network-meta"><span>INGRESS <b>2.4 MB/s</b></span><span>LATENCY <b>24 ms</b></span><span>PACKETS <b>18.2K</b></span></div></section>
           </div>
           </>}
@@ -230,7 +214,7 @@ function SimpleDashboard({
         <div className="simple-summary">
           <article><span><Users /></span><div><small>Total records</small><strong>{users.length}</strong></div></article>
           <article><span className="green"><CircleDot /></span><div><small>Active users</small><strong>{users.filter((user) => user.status.toLowerCase() === "active").length}</strong></div></article>
-          <article><span className="blue"><Wifi /></span><div><small>Live updates</small><strong className={`simple-live ${liveState}`}>{liveState === "live" ? "Connected" : "Reconnecting"}</strong></div></article>
+          <article><span className="blue"><Wifi /></span><div><small>Data updates</small><strong className={`simple-live ${liveState}`}>Manual refresh</strong></div></article>
         </div>
 
         <section className="simple-panel">
@@ -246,7 +230,7 @@ function SimpleDashboard({
             {!loading && visibleUsers.length === 0 && <div className="simple-empty"><Users /><strong>No captured data found</strong><p>{query ? "Try a different search term." : "New user records will appear here automatically."}</p></div>}
             {loading && users.length === 0 && <div className="simple-empty"><RefreshCw className="spin" /><strong>Loading captured data</strong></div>}
           </div>
-          <footer className="simple-panel-foot"><span><i className={liveState} />Updates are received automatically</span><span>Last updated {lastSync ? lastSync.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "—"}</span></footer>
+          <footer className="simple-panel-foot"><span><i className={liveState} />Use refresh to load new records</span><span>Last updated {lastSync ? lastSync.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "—"}</span></footer>
         </section>
         </>}
       </section>
@@ -271,7 +255,7 @@ function SimpleUserRow({ user, fresh }: { user: UserRecord; fresh: boolean }) {
 
 function SimulatorLink({ dark = false }: { dark?: boolean }) {
   return (
-    <a className={`simulator-link ${dark ? "dark" : ""}`} href="/" target="_blank" rel="noopener noreferrer" title="Open Cyber Scam Awareness in a new tab">
+    <a className={`simulator-link ${dark ? "dark" : ""}`} href="/data-dashboard" target="_blank" rel="noopener noreferrer" title="Open Cyber Scam Awareness in a new tab">
       <GraduationCap /><span>CYBER SCAM AWARENESS</span><Home />
     </a>
   );
