@@ -16,6 +16,7 @@ import {
   Menu,
   MessageCircle,
   PhoneOff,
+  QrCode,
   Share2,
   Shield,
   ShieldCheck,
@@ -227,20 +228,36 @@ export function ScamChallenge() {
     }
   }
 
-  return (
-    <main className="min-h-[100svh] bg-[#eaf6ff] text-[#071b4a] sm:px-4 sm:py-5">
-      <div className={`mx-auto flex min-h-[100svh] w-full max-w-[430px] flex-col overflow-hidden bg-white shadow-[0_18px_70px_rgba(16,58,104,.18)] sm:min-h-[calc(100svh-40px)] sm:rounded-[34px] ${screen === "correct" ? "bg-[#092759]" : ""} ${screen === "wrong" || screen === "gameover" ? "bg-[#160b0e]" : ""}`}>
-        {screen !== "correct" && screen !== "wrong" && screen !== "gameover" && <ChallengeHeader onHome={() => resetGame("landing")} />}
+  async function downloadCertificate(name: string) {
+    const certificate = await createCompletionCertificate({ name, score: safeScore, challenge });
+    downloadScoreImage(certificate);
+  }
 
-        {screen === "landing" && <Landing challengerScore={challengerScore} onStart={() => setScreen(isFriendChallenge ? "intro" : "choose")} />}
-        {screen === "choose" && <ChooseChallenge showMore={showMore} setShowMore={setShowMore} onChoose={chooseChallenge} />}
-        {screen === "intro" && <ScenarioIntro challenge={challenge} onBack={() => setScreen("choose")} onStart={() => setScreen("question")} />}
-        {screen === "question" && <QuestionScreen question={question} index={questionIndex} progress={progress} timeLeft={timeLeft} onBack={() => questionIndex ? setQuestionIndex((current) => current - 1) : setScreen("intro")} onAnswer={answer} />}
-        {screen === "correct" && <CorrectResult score={safeScore} flags={question.flags} onNext={nextQuestion} />}
-        {screen === "wrong" && <WrongResult question={question} showExplanation={showExplanation} onTryAgain={retryQuestion} onExplanation={() => setShowExplanation((current) => !current)} />}
-        {screen === "gameover" && <GameOver onTryAgain={() => resetGame("intro")} onHome={() => resetGame("landing")} />}
-        {screen === "progress" && <LevelProgress score={safeScore} onContinue={() => setScreen("share")} />}
-        {screen === "share" && <ShareInvite score={safeScore} challengerScore={challengerScore} shared={shared} onShare={() => shareChallenge(false)} onWhatsApp={() => shareChallenge(true)} onPlay={() => resetGame("choose")} />}
+  return (
+    <main className="min-h-[100svh] bg-[#eaf6ff] text-[#071b4a] sm:px-4 sm:py-5 lg:px-8">
+      <div className="relative mx-auto w-full">
+        <div className={`mx-auto flex min-h-[100svh] w-full max-w-[430px] flex-col overflow-hidden bg-white shadow-[0_18px_70px_rgba(16,58,104,.18)] sm:min-h-[calc(100svh-40px)] sm:rounded-[34px] ${screen === "correct" ? "bg-[#092759]" : ""} ${screen === "wrong" || screen === "gameover" ? "bg-[#160b0e]" : ""}`}>
+          {screen !== "correct" && screen !== "wrong" && screen !== "gameover" && <ChallengeHeader onHome={() => resetGame("landing")} />}
+
+          {screen === "landing" && <Landing challengerScore={challengerScore} onStart={() => setScreen(isFriendChallenge ? "intro" : "choose")} />}
+          {screen === "choose" && <ChooseChallenge showMore={showMore} setShowMore={setShowMore} onChoose={chooseChallenge} />}
+          {screen === "intro" && <ScenarioIntro challenge={challenge} onBack={() => setScreen("choose")} onStart={() => setScreen("question")} />}
+          {screen === "question" && <QuestionScreen question={question} index={questionIndex} progress={progress} timeLeft={timeLeft} onBack={() => questionIndex ? setQuestionIndex((current) => current - 1) : setScreen("intro")} onAnswer={answer} />}
+          {screen === "correct" && <CorrectResult score={safeScore} flags={question.flags} onNext={nextQuestion} />}
+          {screen === "wrong" && <WrongResult question={question} showExplanation={showExplanation} onTryAgain={retryQuestion} onExplanation={() => setShowExplanation((current) => !current)} />}
+          {screen === "gameover" && <GameOver onTryAgain={() => resetGame("intro")} onHome={() => resetGame("landing")} />}
+          {screen === "progress" && <LevelProgress score={safeScore} onContinue={() => setScreen("share")} />}
+          {screen === "share" && <ShareInvite score={safeScore} challengerScore={challengerScore} shared={shared} onShare={() => shareChallenge(false)} onWhatsApp={() => shareChallenge(true)} onDownloadCertificate={downloadCertificate} onPlay={() => resetGame("choose")} />}
+        </div>
+        <aside className="fixed right-0 top-1/2 hidden w-[260px] -translate-y-1/2 flex-col items-center rounded-l-[28px] border border-r-0 border-blue-100 bg-white p-6 text-center shadow-[0_18px_60px_rgba(16,58,104,.12)] lg:flex xl:w-[300px]">
+          <span className="grid size-14 place-items-center rounded-2xl bg-blue-50 text-blue-700"><QrCode className="size-8" /></span>
+          <h2 className="mt-4 text-[24px] font-black leading-tight text-[#071b4a]">Scan this to start<br />the challenge</h2>
+          <p className="mt-2 text-[13px] leading-5 text-slate-500">Open your phone camera and scan the QR code to play on your mobile.</p>
+          <div className="mt-6 overflow-hidden rounded-2xl border-4 border-blue-50 bg-white p-3 shadow-inner">
+            <Image src="/assets/scam-challenge/challenge-qr.png" alt="QR code to open the CyberRakshak scam challenge" width={220} height={220} className="size-[200px] xl:size-[220px]" priority />
+          </div>
+          <p className="mt-5 rounded-full bg-green-50 px-4 py-2 text-[12px] font-bold text-green-700">No login • Just scan and play</p>
+        </aside>
       </div>
     </main>
   );
@@ -269,6 +286,7 @@ function Landing({ challengerScore, onStart }: { challengerScore: number | null;
         {challengerScore !== null && <div className="mb-5 flex items-center gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-3 text-[12px] shadow-sm"><span className="grid size-10 shrink-0 place-items-center rounded-full bg-amber-100"><Trophy className="size-6 fill-amber-400 text-amber-500" /></span><span><strong className="block text-[13px] text-[#071b4a]">A friend challenged you!</strong>Beat their score of <b>{challengerScore}/1000</b>.</span></div>}
         <h1 className="!text-[30px] !font-black !leading-[1.05] !tracking-[-1px] !text-[#071b4a]">Can a scammer<br />fool you?</h1>
         <p className="mt-3 text-[16px] font-semibold text-[#173d79]">Take the challenge!</p>
+        <p className="mt-3 text-[24px] font-black leading-none text-blue-600">You have 15 seconds!</p>
         <div className="mt-6 grid grid-cols-3 gap-3">
           {[{ icon: CircleUserRound, label: "No Login" }, { icon: LockKeyhole, label: "No App Install" }, { icon: ShieldCheck, label: "Just Play" }].map(({ icon: Icon, label }) => <div key={label} className="text-center"><span className="mx-auto grid size-10 place-items-center rounded-full border-2 border-blue-100 text-blue-800"><Icon className="size-5" /></span><strong className="mt-2 block text-[10px]">{label}</strong></div>)}
         </div>
@@ -325,7 +343,7 @@ function ScenarioIntro({ challenge, onBack, onStart }: { challenge: string; onBa
 function QuestionScreen({ question, index, progress, timeLeft, onBack, onAnswer }: { question: typeof questions[number]; index: number; progress: number; timeLeft: number; onBack: () => void; onAnswer: (index: number) => void }) {
   return (
     <section className="flex flex-1 flex-col px-4 pb-5 pt-3">
-      <div className="flex items-center gap-3"><button type="button" onClick={onBack} aria-label="Previous screen"><ArrowLeft className="size-5" /></button><div className="flex-1"><div className="mb-1 flex justify-between text-[11px] text-slate-400"><span>Question {index + 1}/5</span><span className={`flex items-center gap-1 font-bold ${timeLeft <= 5 ? "text-red-600" : "text-slate-500"}`}><Clock3 className="size-4" />00:{String(timeLeft).padStart(2, "0")}</span></div><div className="h-2 overflow-hidden rounded-full bg-slate-100"><span className="block h-full rounded-full bg-green-500 transition-all" style={{ width: `${progress}%` }} /></div></div></div>
+      <div className="flex items-center gap-3"><button type="button" onClick={onBack} aria-label="Previous screen"><ArrowLeft className="size-5" /></button><div className="flex-1"><div className="mb-1 flex items-center justify-between text-[11px] text-slate-400"><span>Question {index + 1}/5</span><span aria-live="polite" aria-label={`${timeLeft} seconds remaining`} className={`flex items-center gap-1 rounded-full px-2 py-1 font-black text-red-600 animate-pulse ${timeLeft <= 5 ? "bg-red-100 text-[13px] ring-2 ring-red-200" : "bg-red-50"}`}><Clock3 className="size-4" />00:{String(timeLeft).padStart(2, "0")}</span></div><div className="h-2 overflow-hidden rounded-full bg-slate-100"><span className="block h-full rounded-full bg-green-500 transition-all" style={{ width: `${progress}%` }} /></div></div></div>
 
       {question.kind === "call" ? <FakeCallCard question={question} /> : <WhatsAppCard question={question} />}
 
@@ -485,13 +503,27 @@ function LevelProgress({ score, onContinue }: { score: number; onContinue: () =>
   );
 }
 
-function ShareInvite({ score, challengerScore, shared, onShare, onWhatsApp, onPlay }: { score: number; challengerScore: number | null; shared: boolean; onShare: () => void; onWhatsApp: () => void; onPlay: () => void }) {
+function ShareInvite({ score, challengerScore, shared, onShare, onWhatsApp, onDownloadCertificate, onPlay }: { score: number; challengerScore: number | null; shared: boolean; onShare: () => void; onWhatsApp: () => void; onDownloadCertificate: (name: string) => Promise<void>; onPlay: () => void }) {
+  const [certificateName, setCertificateName] = useState("Cyber-Aware Citizen");
+  const [certificateDownloaded, setCertificateDownloaded] = useState(false);
+
+  async function handleCertificateDownload() {
+    await onDownloadCertificate(certificateName.trim() || "Cyber-Aware Citizen");
+    setCertificateDownloaded(true);
+  }
+
   return (
     <section className="flex flex-1 flex-col px-5 pb-6 pt-8">
       <h1 className="!text-[26px] !font-black !leading-tight !text-[#071b4a]">Challenge Your Friends!</h1>
       <p className="mt-2 text-[14px] font-semibold text-slate-600">Think your friend will get fooled?</p>
       {challengerScore !== null && <div className={`mt-4 rounded-xl px-4 py-3 text-center text-[12px] font-bold ${score > challengerScore ? "bg-green-50 text-green-700" : score === challengerScore ? "bg-amber-50 text-amber-700" : "bg-blue-50 text-blue-700"}`}>{score > challengerScore ? `You beat your friend by ${score - challengerScore} points!` : score === challengerScore ? "It’s a tie—challenge them again!" : `You were ${challengerScore - score} points away. Try again!`}</div>}
       <div className="mt-6 rounded-2xl border border-blue-100 bg-white p-5 shadow-lg shadow-blue-950/5"><div className="flex items-center gap-5"><span className="grid size-20 place-items-center rounded-full bg-amber-50"><Trophy className="size-14 fill-amber-400 text-amber-500" /></span><div><small className="text-[11px] text-slate-500">I scored</small><strong className="block text-[24px] text-red-500">{score}/1000</strong><p className="mt-1 text-[11px] font-semibold leading-4">on CyberRakshak<br />Can you beat me? 😎</p></div></div><button type="button" onClick={onShare} className="mt-6 flex h-13 w-full items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-[14px] font-bold text-white"><Share2 className="mr-2 size-5" />{shared ? "Challenge Link Ready" : "Challenge a Friend"}</button><div className="mt-5 flex justify-center gap-4"><button type="button" onClick={onWhatsApp} aria-label="Challenge a friend via WhatsApp" className="grid size-11 place-items-center rounded-full bg-green-500 text-white shadow-md shadow-green-500/20"><MessageCircle /></button><span className="grid size-11 place-items-center rounded-full bg-pink-500 text-white"><Instagram /></span><span className="grid size-11 place-items-center rounded-full bg-black text-white"><X /></span><button type="button" onClick={onShare} aria-label="Copy friend challenge link and save score image" className="grid size-11 place-items-center rounded-full bg-slate-100 text-slate-500"><Copy /></button></div><p className="mt-3 text-center text-[10px] text-slate-500">The link carries your score so your friend can try to beat it.</p></div>
+      <div className="mt-4 rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-blue-50 p-4 shadow-sm">
+        <div className="flex items-center gap-3"><span className="grid size-11 shrink-0 place-items-center rounded-full bg-amber-100 text-amber-600"><BadgeCheck className="size-7" /></span><div><h2 className="text-[14px] font-black text-[#071b4a]">Your Awareness Certificate</h2><p className="mt-0.5 text-[10px] text-slate-600">You successfully completed the challenge.</p></div></div>
+        <label className="mt-3 block text-[10px] font-bold text-slate-600" htmlFor="certificate-name">Name on certificate</label>
+        <input id="certificate-name" value={certificateName} onChange={(event) => setCertificateName(event.target.value)} maxLength={48} className="mt-1 h-10 w-full rounded-lg border border-blue-100 bg-white px-3 text-[12px] font-semibold text-[#071b4a] outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-100" />
+        <button type="button" onClick={handleCertificateDownload} className="mt-3 flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-[13px] font-black text-white shadow-md shadow-amber-500/20"><BadgeCheck className="mr-2 size-5" />{certificateDownloaded ? "Download Again" : "Download Certificate (PNG)"}</button>
+      </div>
       <p className="mt-auto text-center text-[12px] font-semibold leading-5 text-[#204a82]">Together we can build<br />a safer digital India.</p>
       <button type="button" onClick={onPlay} className="mt-6 flex h-14 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-[14px] font-bold text-white">Play Next Challenge <ArrowRight className="ml-4 size-5" /></button>
     </section>
@@ -567,6 +599,87 @@ async function createScoreShareImage(score: number): Promise<File> {
   return new File([blob], `cyber-suraksha-score-${score}.png`, { type: "image/png" });
 }
 
+async function createCompletionCertificate({ name, score, challenge }: { name: string; score: number; challenge: string }): Promise<File> {
+  const template = document.createElement("img");
+  const templateReady = new Promise<void>((resolve, reject) => {
+    template.onload = () => resolve();
+    template.onerror = () => reject(new Error("Unable to load certificate template"));
+  });
+  template.src = "/assets/scam-challenge/certificate-template.png";
+  await templateReady;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = 1536;
+  canvas.height = 1024;
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("Canvas is unavailable");
+  context.drawImage(template, 0, 0, canvas.width, canvas.height);
+  context.textAlign = "center";
+
+  context.fillStyle = "#082b67";
+  context.font = "900 54px Georgia, serif";
+  context.fillText("CERTIFICATE OF COMPLETION", 768, 285);
+  context.fillStyle = "#b78114";
+  context.font = "700 27px Arial, sans-serif";
+  context.fillText("CYBERCRIME AWARENESS CHALLENGE", 768, 333);
+
+  context.strokeStyle = "#d7ad47";
+  context.lineWidth = 2;
+  context.beginPath();
+  context.moveTo(460, 365);
+  context.lineTo(1076, 365);
+  context.stroke();
+
+  context.fillStyle = "#5a6980";
+  context.font = "500 22px Arial, sans-serif";
+  context.fillText("This certificate is proudly presented to", 768, 410);
+
+  let nameSize = 58;
+  do {
+    context.font = `700 ${nameSize}px Georgia, serif`;
+    nameSize -= 2;
+  } while (context.measureText(name).width > 820 && nameSize > 34);
+  context.fillStyle = "#092f70";
+  context.fillText(name, 768, 482);
+  context.strokeStyle = "#b98b25";
+  context.beginPath();
+  context.moveTo(445, 502);
+  context.lineTo(1091, 502);
+  context.stroke();
+
+  context.fillStyle = "#364b69";
+  context.font = "500 23px Arial, sans-serif";
+  context.fillText("for successfully completing the CyberRakshak scam challenge", 768, 552);
+  context.fillText("and demonstrating the skills to identify and respond to cybercrime.", 768, 587);
+
+  context.fillStyle = "#eff6ff";
+  context.strokeStyle = "#7da7df";
+  context.lineWidth = 2;
+  context.beginPath();
+  context.roundRect(470, 625, 596, 72, 20);
+  context.fill();
+  context.stroke();
+  context.fillStyle = "#092f70";
+  context.font = "700 24px Arial, sans-serif";
+  context.fillText(`${challenge}  •  Score: ${score}/1000`, 768, 670);
+
+  const completionDate = new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "long", year: "numeric" }).format(new Date());
+  const certificateId = `CR-${new Date().getFullYear()}-${String(Date.now()).slice(-8)}`;
+  context.fillStyle = "#364b69";
+  context.font = "600 18px Arial, sans-serif";
+  context.fillText(completionDate, 540, 756);
+  context.fillText("CyberRakshak Awareness Program", 1005, 756);
+  context.font = "500 15px Arial, sans-serif";
+  context.fillStyle = "#718096";
+  context.fillText("Date of completion", 540, 782);
+  context.fillText("Authorized digital certificate", 1005, 782);
+  context.fillText(`Certificate ID: ${certificateId}`, 768, 820);
+
+  const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error("Unable to create certificate")), "image/png"));
+  const safeName = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "participant";
+  return new File([blob], `cyberrakshak-certificate-${safeName}.png`, { type: "image/png" });
+}
+
 function downloadScoreImage(file: File) {
   const link = document.createElement("a");
   link.href = URL.createObjectURL(file);
@@ -576,6 +689,13 @@ function downloadScoreImage(file: File) {
 }
 
 type GameSound = "correct" | "wrong" | "win";
+type SoundNote = { frequency: number; at: number; length: number; wave?: OscillatorType; endFrequency?: number };
+
+const soundPatterns: Record<GameSound, SoundNote[]> = {
+  correct: [{ frequency: 660, at: 0, length: .1 }, { frequency: 880, at: .09, length: .18 }],
+  wrong: [{ frequency: 392, at: 0, length: .12, wave: "triangle", endFrequency: 280 }, { frequency: 247, at: .13, length: .2, wave: "square", endFrequency: 130 }],
+  win: [{ frequency: 523, at: 0, length: .13 }, { frequency: 659, at: .11, length: .13 }, { frequency: 784, at: .22, length: .14 }, { frequency: 1047, at: .34, length: .32 }],
+};
 
 let gameAudioContext: AudioContext | null = null;
 
@@ -589,18 +709,14 @@ function playGameSound(sound: GameSound) {
     if (context.state === "suspended") void context.resume();
 
     const start = context.currentTime + 0.01;
-    const notes = sound === "correct"
-      ? [{ frequency: 660, at: 0, length: .1 }, { frequency: 880, at: .09, length: .18 }]
-      : sound === "win"
-        ? [{ frequency: 523, at: 0, length: .13 }, { frequency: 659, at: .11, length: .13 }, { frequency: 784, at: .22, length: .14 }, { frequency: 1047, at: .34, length: .32 }]
-        : [{ frequency: 392, at: 0, length: .12 }, { frequency: 311, at: .1, length: .13 }, { frequency: 247, at: .21, length: .15 }, { frequency: 165, at: .34, length: .25 }];
+    const notes = soundPatterns[sound];
 
-    notes.forEach(({ frequency, at, length }, index) => {
+    notes.forEach(({ frequency, at, length, wave, endFrequency }) => {
       const oscillator = context.createOscillator();
       const gain = context.createGain();
-      oscillator.type = sound === "wrong" ? (index % 2 ? "square" : "triangle") : "sine";
+      oscillator.type = wave ?? "sine";
       oscillator.frequency.setValueAtTime(frequency, start + at);
-      if (sound === "wrong") oscillator.frequency.exponentialRampToValueAtTime(Math.max(80, frequency * .72), start + at + length);
+      if (endFrequency) oscillator.frequency.exponentialRampToValueAtTime(endFrequency, start + at + length);
       gain.gain.setValueAtTime(0.0001, start + at);
       gain.gain.exponentialRampToValueAtTime(sound === "wrong" ? .14 : .18, start + at + .018);
       gain.gain.exponentialRampToValueAtTime(0.0001, start + at + length);

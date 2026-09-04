@@ -71,9 +71,16 @@ export function Simulator() {
                 </h1>
               </div>
               <p className="mt-4 max-w-md text-sm font-semibold leading-6 text-slate-600 sm:text-base">{t("Practice. Learn. Stay one step ahead.")}</p>
-              <Button onClick={showSimulationCategories} className="mt-5 h-10 bg-gradient-to-r from-violet-600 to-violet-700 px-4 text-[10px] font-bold shadow-md shadow-violet-600/20 hover:from-violet-700 hover:to-violet-800">
-                {t("Start Simulation")} <ChevronRight className="ml-3 size-3" />
-              </Button>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <Button onClick={showSimulationCategories} className="h-10 bg-gradient-to-r from-violet-600 to-violet-700 px-4 text-[10px] font-bold shadow-md shadow-violet-600/20 hover:from-violet-700 hover:to-violet-800">
+                  {t("Start Simulation")} <ChevronRight className="ml-3 size-3" />
+                </Button>
+                <Button asChild className="h-10 bg-gradient-to-r from-emerald-500 to-green-600 px-4 text-[10px] font-bold shadow-md shadow-emerald-600/20 hover:from-emerald-600 hover:to-green-700">
+                  <Link href="/scam-challenge" target="_blank" rel="noopener noreferrer">
+                    {t("Take Challenge")} <ChevronRight className="ml-3 size-3" />
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             <div className="relative hidden min-h-44 items-center justify-center sm:flex" aria-hidden="true">
