@@ -1,10 +1,18 @@
 import { Client, Pool, type PoolClient, type QueryResultRow } from "pg";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import type { UserInput, UserRecord } from "@/lib/types";
 
 const connectionString = process.env.DATABASE_URL;
 const ssl = connectionString?.includes(".supabase.co")
   ? { rejectUnauthorized: false }
   : undefined;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseAdmin = supabaseUrl && supabaseServiceRoleKey
+  ? createSupabaseClient(supabaseUrl, supabaseServiceRoleKey, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    })
+  : null;
 
 if (!connectionString) {
   console.warn("DATABASE_URL is not configured. Database routes will return an error.");
@@ -75,7 +83,12 @@ export function ensureSchema() {
         WHERE NOT EXISTS (SELECT 1 FROM captured_users);
       `);
     }
-  })();
+  })().catch((error) => {
+    // A short network or database outage must not poison every later request.
+    // Clear only the failed initialization so the next API call can reconnect.
+    schemaPromise = null;
+    throw error;
+  });
   return schemaPromise;
 }
 
@@ -94,8 +107,8 @@ type UserRow = QueryResultRow & {
   amount: string | number | null;
   status: string;
   threat_level: UserRecord["threatLevel"];
-  last_seen: Date;
-  created_at: Date;
+  last_seen: Date | string;
+  created_at: Date | string;
 };
 
 export function toUser(row: UserRow): UserRecord {
@@ -114,18 +127,32 @@ export function toUser(row: UserRow): UserRecord {
     amount: row.amount === null ? null : Number(row.amount),
     status: row.status,
     threatLevel: row.threat_level,
-    lastSeen: row.last_seen.toISOString(),
-    createdAt: row.created_at.toISOString(),
+    lastSeen: new Date(row.last_seen).toISOString(),
+    createdAt: new Date(row.created_at).toISOString(),
   };
 }
 
 export async function listUsers(limit = 100): Promise<UserRecord[]> {
-  await ensureSchema();
-  const result = await pool.query<UserRow>(
-    "SELECT * FROM captured_users ORDER BY created_at DESC LIMIT $1",
-    [limit],
-  );
-  return result.rows.map(toUser);
+  try {
+    await ensureSchema();
+    const result = await pool.query<UserRow>(
+      "SELECT * FROM captured_users ORDER BY created_at DESC LIMIT $1",
+      [limit],
+    );
+    return result.rows.map(toUser);
+  } catch (postgresError) {
+    if (!supabaseAdmin) throw postgresError;
+
+    console.warn("PostgreSQL unavailable; loading captured users through Supabase REST.");
+    const { data, error } = await supabaseAdmin
+      .from("captured_users")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) throw error;
+    return (data as UserRow[]).map(toUser);
+  }
 }
 
 export async function insertUser(input: UserInput): Promise<UserRecord> {
